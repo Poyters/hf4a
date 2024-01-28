@@ -2,6 +2,7 @@ import { Component, inject, Inject } from '@angular/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { CommonModule } from '@angular/common';
 import {
   MatChipEditedEvent,
   MatChipInputEvent,
@@ -14,6 +15,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatInputModule } from '@angular/material/input';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
+import { crewConfig } from '../../../configs/crew.config';
 
 export interface Card {
   name: string;
@@ -35,6 +37,7 @@ export interface PlayerDialogData {
   selector: 'app-player-dialog',
   standalone: true,
   imports: [
+    CommonModule,
     FormsModule,
     MatDialogModule,
     MatButtonModule,
@@ -54,6 +57,7 @@ export class PlayerDialogComponent {
   leoCards: Card[] = [];
   outpost1Cards: Card[] = [];
   outpost2Cards: Card[] = [];
+  public crews = crewConfig;
 
   announcer = inject(LiveAnnouncer);
 

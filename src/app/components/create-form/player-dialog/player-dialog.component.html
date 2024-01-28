@@ -6,6 +6,13 @@
     <input matInput [(ngModel)]="data.playerName" />
   </mat-form-field>
 
+  <h3>Crew type</h3>
+  <mat-chip-listbox aria-label="Crew selection">
+    <mat-chip-option *ngFor="let crew of crews">
+      {{ crew.name }}
+    </mat-chip-option>
+  </mat-chip-listbox>
+
   <h3>Aqua</h3>
   <mat-form-field class="example-full-width">
     <mat-label>Aquas</mat-label>
