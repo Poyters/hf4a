@@ -1,0 +1,138 @@
+<h2 mat-dialog-title>New player</h2>
+<mat-dialog-content class="mat-typography">
+  <h3>Player name</h3>
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="data.playerName" />
+  </mat-form-field>
+
+  <h3>Aqua</h3>
+  <mat-form-field class="example-full-width">
+    <mat-label>Aquas</mat-label>
+    <input matInput value="0" type="number" [(ngModel)]="data.aquas" />
+  </mat-form-field>
+
+  <h3>Rocket</h3>
+  <mat-form-field class="chip-list">
+    <mat-chip-grid
+      #rocketCardsChip
+      aria-label="Enter Rocket cards"
+      [(ngModel)]="data.cards.rocket"
+    >
+      @for (rocketCard of rocketCards; track rocketCard) {
+      <mat-chip-row
+        (removed)="remove('ROCKET', rocketCard)"
+        [editable]="true"
+        (edited)="edit('ROCKET', rocketCard, $event)"
+        [aria-description]="'press enter to edit ' + rocketCard.name"
+      >
+        {{ rocketCard.name }}
+        <button matChipRemove [attr.aria-label]="'remove ' + rocketCard.name">
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-chip-row>
+      }
+      <input
+        placeholder="New rocket card..."
+        [matChipInputFor]="rocketCardsChip"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        [matChipInputAddOnBlur]="addOnBlur"
+        (matChipInputTokenEnd)="add('ROCKET', $event)"
+      />
+    </mat-chip-grid>
+  </mat-form-field>
+
+  <h3>LEO</h3>
+  <mat-form-field class="chip-list">
+    <mat-chip-grid
+      #leoCardsChip
+      aria-label="Enter LEO cards"
+      [(ngModel)]="data.cards.leo"
+    >
+      @for (leoCard of leoCards; track leoCard) {
+      <mat-chip-row
+        (removed)="remove('LEO', leoCard)"
+        [editable]="true"
+        (edited)="edit('LEO', leoCard, $event)"
+        [aria-description]="'press enter to edit ' + leoCard.name"
+      >
+        {{ leoCard.name }}
+        <button matChipRemove [attr.aria-label]="'remove ' + leoCard.name">
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-chip-row>
+      }
+      <input
+        placeholder="New LEO card..."
+        [matChipInputFor]="leoCardsChip"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        [matChipInputAddOnBlur]="addOnBlur"
+        (matChipInputTokenEnd)="add('LEO', $event)"
+      />
+    </mat-chip-grid>
+  </mat-form-field>
+
+  <h3>Outpost 1</h3>
+  <mat-form-field class="chip-list">
+    <mat-chip-grid
+      #outpost1CardsChip
+      aria-label="Enter outpost 1 cards"
+      [(ngModel)]="data.cards.outpost1"
+    >
+      @for (outpost1Card of outpost1Cards; track outpost1Card) {
+      <mat-chip-row
+        (removed)="remove('OUTPOST_1', outpost1Card)"
+        [editable]="true"
+        (edited)="edit('OUTPOST_1', outpost1Card, $event)"
+        [aria-description]="'press enter to edit ' + outpost1Card.name"
+      >
+        {{ outpost1Card.name }}
+        <button matChipRemove [attr.aria-label]="'remove ' + outpost1Card.name">
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-chip-row>
+      }
+      <input
+        placeholder="New OUTPOST_1 card..."
+        [matChipInputFor]="outpost1CardsChip"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        [matChipInputAddOnBlur]="addOnBlur"
+        (matChipInputTokenEnd)="add('OUTPOST_1', $event)"
+      />
+    </mat-chip-grid>
+  </mat-form-field>
+
+  <h3>Outpost 2</h3>
+  <mat-form-field class="chip-list">
+    <mat-chip-grid
+      #outpost2CardsChip
+      aria-label="Enter OUTPOST_2 cards"
+      [(ngModel)]="data.cards.outpost2"
+    >
+      @for (outpost2Card of outpost2Cards; track outpost2Card) {
+      <mat-chip-row
+        (removed)="remove('OUTPOST_2', outpost2Card)"
+        [editable]="true"
+        (edited)="edit('OUTPOST_2', outpost2Card, $event)"
+        [aria-description]="'press enter to edit ' + outpost2Card.name"
+      >
+        {{ outpost2Card.name }}
+        <button matChipRemove [attr.aria-label]="'remove ' + outpost2Card.name">
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-chip-row>
+      }
+      <input
+        placeholder="New OUTPOST_2 card..."
+        [matChipInputFor]="outpost2CardsChip"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        [matChipInputAddOnBlur]="addOnBlur"
+        (matChipInputTokenEnd)="add('OUTPOST_2', $event)"
+      />
+    </mat-chip-grid>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Create</button>
+</mat-dialog-actions>
