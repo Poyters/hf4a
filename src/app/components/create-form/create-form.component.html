@@ -1,0 +1,15 @@
+<h1>Creating a new save sheet</h1>
+
+<form [formGroup]="form">
+  <h3>Choose scenario...</h3>
+  <mat-chip-listbox aria-label="Fish selection">
+    <mat-chip-option
+      *ngFor="let scenario of scenarios"
+      (click)="selectScenario(scenario)"
+    >
+      {{ scenario.name }}
+    </mat-chip-option>
+  </mat-chip-listbox>
+
+  <h3>Add players {{ currentScenarioData | scenarioPlayersRange }}</h3>
+</form>
