@@ -1,20 +1,62 @@
 export const crewConfig = [
   {
-    name: 'Crew 1',
+    name: 'ROSCOSMOS',
+    type: 'B',
+    color: 'violet',
   },
   {
-    name: 'Crew 2',
+    name: 'Taikonauts',
+    type: 'C',
+    color: 'violet',
   },
   {
-    name: 'Crew 3',
+    name: 'NASA Astronauts',
+    type: 'D',
+    color: 'white',
   },
   {
-    name: 'Crew 4',
+    name: 'ISRO Glavcosmonauts',
+    type: 'G',
+    color: 'white',
   },
   {
-    name: 'Crew 5',
+    name: 'Anonymous P2P',
+    type: 'E',
+    color: 'green',
   },
   {
-    name: 'Crew 6',
+    name: 'ESA Space Unionists',
+    type: 'F',
+    color: 'green',
+  },
+  {
+    name: 'NASDRA Astronauts',
+    type: 'L',
+    color: 'red',
+  },
+  {
+    name: 'Shizmu Corp Entrepreneurs',
+    type: 'M',
+    color: 'red',
+  },
+  {
+    name: 'B612 Foundation',
+    type: 'H',
+    color: 'yellow',
+  },
+  {
+    name: 'United Nations Cosmonauts',
+    type: 'A',
+    color: 'yellow',
+  },
+  {
+    name: 'Norse Astronauts',
+    type: 'K',
+    color: 'gray',
+  },
+  {
+    name: 'SpaceX',
+    type: 'J',
+    color: 'gray',
   },
 ];

@@ -1,31 +1,100 @@
-<h1>Creating a new save sheet</h1>
+<mat-card>
+  <mat-card-content>
+    <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
+      <mat-step [stepControl]="scenarioFormGroup">
+        <form [formGroup]="scenarioFormGroup">
+          <ng-template matStepLabel>Scenario</ng-template>
+          <mat-chip-listbox aria-label="Fish selection">
+            <mat-chip-option
+              *ngFor="let scenario of scenarios"
+              (click)="selectScenario(scenario)"
+            >
+              {{ scenario.name }}
+            </mat-chip-option>
+          </mat-chip-listbox>
+          @if (currentScenarioData) {
+          <h4>Seniority discs</h4>
+          <mat-chip-listbox
+            aria-label="Fish selection"
+            *ngIf="currentScenarioData"
+          >
+            <mat-chip-option
+              *ngFor="let disc of currentScenarioData?.seniorityDiscs"
+              (click)="selectSeniorityDiscs(disc)"
+              [selected]="
+                scenarioFormGroup.get('seniorityDiscs')?.value === disc
+              "
+            >
+              {{ disc }}
+            </mat-chip-option>
+          </mat-chip-listbox>
+          }
 
-<form [formGroup]="form">
-  <h3>Choose scenario...</h3>
-  <mat-chip-listbox aria-label="Fish selection">
-    <mat-chip-option
-      *ngFor="let scenario of scenarios"
-      (click)="selectScenario(scenario)"
-    >
-      {{ scenario.name }}
-    </mat-chip-option>
-  </mat-chip-listbox>
+          <div *ngIf="scenarioFormGroup.get('seniorityDiscs')?.value">
+            <mat-form-field class="aqua-field">
+              <mat-label>Left discs</mat-label>
+              <input
+                matInput
+                value="1"
+                type="number"
+                formControlName="leftSeniorityDiscs"
+                [min]="1"
+                [max]="scenarioFormGroup.get('seniorityDiscs')?.value ?? 7"
+              />
 
-  <h3 *ngIf="currentScenarioData">How many seniority discs?</h3>
-  <mat-chip-listbox aria-label="Fish selection" *ngIf="currentScenarioData">
-    <mat-chip-option *ngFor="let disc of currentScenarioData?.seniorityDiscs">
-      {{ disc }}
-    </mat-chip-option>
-  </mat-chip-listbox>
+              @if (scenarioFormGroup.hasError('leftSeniorityDiscsMax')) {
+              <mat-error
+                >Max
+                {{ scenarioFormGroup.get("seniorityDiscs")?.value }}</mat-error
+              >
+              }
+            </mat-form-field>
+          </div>
 
-  <h3 *ngIf="currentScenarioData">
-    Add players {{ currentScenarioData | scenarioPlayersRange }}
-  </h3>
+          <div>
+            <button
+              mat-button
+              matStepperNext
+              [disabled]="!scenarioFormGroup.valid"
+            >
+              Next
+            </button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup">
+          <ng-template matStepLabel
+            >Players
+            {{ currentScenarioData | scenarioPlayersRange }}</ng-template
+          >
+          <button
+            mat-button
+            (click)="openPlayerDialog()"
+            *ngIf="currentScenarioData"
+          >
+            New Player
+          </button>
 
-  <button mat-button (click)="openPlayerDialog()" *ngIf="currentScenarioData">
-    New Player
-  </button>
-
-  <h3 *ngIf="currentScenarioData">Players</h3>
-  <app-player *ngFor="let player of players" [playerData]="player"></app-player>
-</form>
+          <h3 *ngIf="currentScenarioData">Players</h3>
+          <app-player
+            *ngFor="let player of players"
+            [playerData]="player"
+          ></app-player>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        <p>You are now done.</p>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.reset()">Reset</button>
+        </div>
+      </mat-step>
+    </mat-stepper>
+  </mat-card-content>
+</mat-card>

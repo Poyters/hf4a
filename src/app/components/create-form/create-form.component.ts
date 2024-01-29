@@ -1,11 +1,19 @@
 import { Component } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormsModule } from '@angular/forms';
 import { scenariosConfig } from '../../configs/scenarios.config';
 import { MatChipsModule } from '@angular/material/chips';
 import { CommonModule } from '@angular/common';
-import { FormControl, ReactiveFormsModule, FormGroup } from '@angular/forms';
+import {
+  FormsModule,
+  FormControl,
+  ReactiveFormsModule,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
+  AbstractControl,
+} from '@angular/forms';
 import { ScenarioPlayersRangePipe } from '../../pipes/scenario-players-range.pipe';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
@@ -14,6 +22,8 @@ import { PlayerDialogComponent } from './player-dialog/player-dialog.component';
 import { PlayerData } from '../../interfaces/player.interface';
 import { PlayerComponent } from './player/player.component';
 import { ScenarioData } from '../../interfaces/scenarios.interface';
+import { MatStepperModule } from '@angular/material/stepper';
+import { leftSeniorityDiscsValidator } from '../../validators/leftSeniorityDiscs.validator';
 
 @Component({
   selector: 'app-create-form',
@@ -30,22 +40,43 @@ import { ScenarioData } from '../../interfaces/scenarios.interface';
     MatButtonModule,
     MatDialogModule,
     PlayerComponent,
+    MatStepperModule,
   ],
   templateUrl: './create-form.component.html',
   styleUrl: './create-form.component.scss',
 })
 export class CreateFormComponent {
   public scenarios = scenariosConfig;
-  public currentScenario = new FormControl('');
 
-  public form: FormGroup = new FormGroup({
-    currentScenario: new FormControl(''),
-    seniorityDiscs: new FormControl(null),
+  scenarioFormGroup = new FormGroup(
+    {
+      currentScenario: new FormControl('', Validators.required),
+      seniorityDiscs: new FormControl<number | null>(null, Validators.required),
+      leftSeniorityDiscs: new FormControl(1, [Validators.required]),
+    },
+    { validators: leftSeniorityDiscsValidator }
+  );
+
+  secondFormGroup = new FormGroup({
+    secondCtrl: new FormControl('', Validators.required),
   });
+  isLinear = false;
 
   public players: PlayerData[] = [];
 
   constructor(public dialog: MatDialog) {}
+
+  ngOnInit(): void {
+    // Subskrybuj zdarzenie valueChanges, aby reagować na zmiany w formularzu
+    this.scenarioFormGroup.valueChanges.subscribe(() => {
+      console.log('this.scenarioFormGroup', this.scenarioFormGroup);
+      // Tutaj możesz dodatkowo obsłużyć logikę po zmianie wartości w formularzu
+      console.log(
+        'awfa',
+        this.scenarioFormGroup.hasError('leftSeniorityDiscsMax')
+      );
+    });
+  }
 
   openPlayerDialog() {
     const dialogRef = this.dialog.open(PlayerDialogComponent, {
@@ -60,17 +91,32 @@ export class CreateFormComponent {
   }
 
   selectScenario(scenario: any): void {
-    if (scenario.name === this.currentScenario.value) {
-      this.currentScenario.setValue('');
+    if (
+      scenario.name === this.scenarioFormGroup.get('currentScenario')?.value
+    ) {
+      this.scenarioFormGroup.get('currentScenario')?.setValue('');
       return;
     }
 
-    this.currentScenario.setValue(scenario.name);
+    this.scenarioFormGroup.get('currentScenario')?.setValue(scenario.name);
+    this.scenarioFormGroup
+      .get('seniorityDiscs')
+      ?.setValue(this.currentScenarioData?.seniorityDiscs[0] ?? null);
+  }
+
+  selectSeniorityDiscs(disc: number): void {
+    if (disc === this.scenarioFormGroup.get('seniorityDiscs')?.value) {
+      this.scenarioFormGroup.get('seniorityDiscs')?.setValue(null);
+      return;
+    }
+
+    this.scenarioFormGroup.get('seniorityDiscs')?.setValue(disc);
   }
 
   get currentScenarioData() {
     return scenariosConfig.find(
-      (scenario) => scenario.name === this.currentScenario.value
+      (scenario) =>
+        scenario.name === this.scenarioFormGroup.get('currentScenario')?.value
     );
   }
 }
