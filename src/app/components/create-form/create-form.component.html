@@ -11,14 +11,21 @@
     </mat-chip-option>
   </mat-chip-listbox>
 
-  <h3>How many seniority discs?</h3>
+  <h3 *ngIf="currentScenarioData">How many seniority discs?</h3>
   <mat-chip-listbox aria-label="Fish selection" *ngIf="currentScenarioData">
     <mat-chip-option *ngFor="let disc of currentScenarioData?.seniorityDiscs">
       {{ disc }}
     </mat-chip-option>
   </mat-chip-listbox>
 
-  <h3>Add players {{ currentScenarioData | scenarioPlayersRange }}</h3>
+  <h3 *ngIf="currentScenarioData">
+    Add players {{ currentScenarioData | scenarioPlayersRange }}
+  </h3>
 
-  <button mat-button (click)="openPlayerDialog()">New Player</button>
+  <button mat-button (click)="openPlayerDialog()" *ngIf="currentScenarioData">
+    New Player
+  </button>
+
+  <h3 *ngIf="currentScenarioData">Players</h3>
+  <app-player *ngFor="let player of players" [playerData]="player"></app-player>
 </form>

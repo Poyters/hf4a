@@ -11,6 +11,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { PlayerDialogComponent } from './player-dialog/player-dialog.component';
+import { PlayerData } from '../../interfaces/player.interface';
+import { PlayerComponent } from './player/player.component';
+import { ScenarioData } from '../../interfaces/scenarios.interface';
 
 @Component({
   selector: 'app-create-form',
@@ -26,6 +29,7 @@ import { PlayerDialogComponent } from './player-dialog/player-dialog.component';
     MatCardModule,
     MatButtonModule,
     MatDialogModule,
+    PlayerComponent,
   ],
   templateUrl: './create-form.component.html',
   styleUrl: './create-form.component.scss',
@@ -39,6 +43,8 @@ export class CreateFormComponent {
     seniorityDiscs: new FormControl(null),
   });
 
+  public players: PlayerData[] = [];
+
   constructor(public dialog: MatDialog) {}
 
   openPlayerDialog() {
@@ -48,11 +54,17 @@ export class CreateFormComponent {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log(result);
+      console.log('res', result);
+      if (result) this.players.push(result);
     });
   }
 
   selectScenario(scenario: any): void {
+    if (scenario.name === this.currentScenario.value) {
+      this.currentScenario.setValue('');
+      return;
+    }
+
     this.currentScenario.setValue(scenario.name);
   }
 

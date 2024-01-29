@@ -1,4 +1,4 @@
-import { Component, inject, Inject } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
@@ -10,28 +10,13 @@ import {
 } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatInputModule } from '@angular/material/input';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormsModule } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { crewConfig } from '../../../configs/crew.config';
-
-export interface Card {
-  name: string;
-}
-
-export interface PlayerDialogData {
-  playerName: string;
-  crewType: string;
-  aquas: number;
-  cards: {
-    rocket: Card[];
-    leo: Card[];
-    outpost1: Card[];
-    outpost2: Card[];
-  };
-}
+import { PlayerData, Card } from '../../../interfaces/player.interface';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-player-dialog',
@@ -39,6 +24,7 @@ export interface PlayerDialogData {
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     MatDialogModule,
     MatButtonModule,
     MatFormFieldModule,
@@ -59,19 +45,24 @@ export class PlayerDialogComponent {
   outpost2Cards: Card[] = [];
   public crews = crewConfig;
 
-  announcer = inject(LiveAnnouncer);
+  playerForm = new FormGroup({
+    playerName: new FormControl('', Validators.required),
+    aquas: new FormControl(0, [Validators.min(0), Validators.max(50)]),
+    crewType: new FormControl('', Validators.required),
+  });
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: PlayerDialogData) {}
+  constructor(
+    private dialogRef: MatDialogRef<PlayerDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: PlayerData
+  ) {}
 
   add(cardsType: string, event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
 
-    // Add our fruit
     if (value) {
       this.getTypeOfCards(cardsType).push({ name: value });
     }
 
-    // Clear the input value
     event.chipInput!.clear();
   }
 
@@ -80,21 +71,17 @@ export class PlayerDialogComponent {
 
     if (index >= 0) {
       this.getTypeOfCards(cardsType).splice(index, 1);
-
-      this.announcer.announce(`Removed ${fruit}`);
     }
   }
 
   edit(cardsType: string, fruit: Card, event: MatChipEditedEvent) {
     const value = event.value.trim();
 
-    // Remove fruit if it no longer has a name
     if (!value) {
       this.remove(cardsType, fruit);
       return;
     }
 
-    // Edit existing fruit
     const index = this.getTypeOfCards(cardsType).indexOf(fruit);
     if (index >= 0) {
       this.getTypeOfCards(cardsType)[index].name = value;
@@ -111,6 +98,33 @@ export class PlayerDialogComponent {
         return this.outpost2Cards;
       default:
         return this.rocketCards;
+    }
+  }
+
+  selectCrew(crewType: string): void {
+    this.playerForm.get('crewType')?.markAsTouched();
+
+    if (crewType === this.playerForm.get('crewType')?.value) {
+      this.playerForm.get('crewType')?.setValue('');
+      return;
+    }
+
+    this.playerForm.get('crewType')?.setValue(crewType);
+  }
+
+  save() {
+    const { value, valid } = this.playerForm;
+
+    if (valid) {
+      this.dialogRef.close({
+        ...value,
+        cards: {
+          rocket: this.rocketCards,
+          leo: this.leoCards,
+          outpost1: this.outpost1Cards,
+          outpost2: this.outpost2Cards,
+        },
+      });
     }
   }
 }
