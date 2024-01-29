@@ -53,6 +53,11 @@ export class CreateFormComponent {
       currentScenario: new FormControl('', Validators.required),
       seniorityDiscs: new FormControl<number | null>(null, Validators.required),
       leftSeniorityDiscs: new FormControl(1, [Validators.required]),
+      yearPosition: new FormControl(1, [
+        Validators.required,
+        Validators.min(1),
+        Validators.max(12),
+      ]),
     },
     { validators: leftSeniorityDiscsValidator }
   );

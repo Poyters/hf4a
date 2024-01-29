@@ -30,8 +30,11 @@
           </mat-chip-listbox>
           }
 
-          <div *ngIf="scenarioFormGroup.get('seniorityDiscs')?.value">
-            <mat-form-field class="aqua-field">
+          <div
+            *ngIf="scenarioFormGroup.get('seniorityDiscs')?.value"
+            class="discs-wrapper"
+          >
+            <mat-form-field>
               <mat-label>Left discs</mat-label>
               <input
                 matInput
@@ -46,6 +49,31 @@
               <mat-error
                 >Max
                 {{ scenarioFormGroup.get("seniorityDiscs")?.value }}</mat-error
+              >
+              }
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Year position</mat-label>
+              <input
+                matInput
+                value="1"
+                type="number"
+                formControlName="yearPosition"
+              />
+              @if (scenarioFormGroup.get('yearPosition')?.hasError('min')) {
+              <mat-error>
+                Min
+                {{
+                  scenarioFormGroup.get("yearPosition")?.getError("min").min
+                }}</mat-error
+              >
+              } @if (scenarioFormGroup.get('yearPosition')?.hasError('max')) {
+              <mat-error>
+                Max
+                {{
+                  scenarioFormGroup.get("yearPosition")?.getError("max").max
+                }}</mat-error
               >
               }
             </mat-form-field>
