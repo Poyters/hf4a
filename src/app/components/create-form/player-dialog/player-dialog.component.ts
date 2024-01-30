@@ -17,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { crewConfig } from '../../../configs/crew.config';
 import { PlayerData, Card } from '../../../interfaces/player.interface';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { CardChipsComponent } from './card-chips/card-chips.component';
 
 @Component({
   selector: 'app-player-dialog',
@@ -32,6 +33,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
     MatIconModule,
     MatExpansionModule,
     MatInputModule,
+    CardChipsComponent,
   ],
   templateUrl: './player-dialog.component.html',
   styleUrl: './player-dialog.component.scss',
@@ -55,51 +57,6 @@ export class PlayerDialogComponent {
     private dialogRef: MatDialogRef<PlayerDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: PlayerData
   ) {}
-
-  add(cardsType: string, event: MatChipInputEvent): void {
-    const value = (event.value || '').trim();
-
-    if (value) {
-      this.getTypeOfCards(cardsType).push({ name: value });
-    }
-
-    event.chipInput!.clear();
-  }
-
-  remove(cardsType: string, fruit: Card): void {
-    const index = this.getTypeOfCards(cardsType).indexOf(fruit);
-
-    if (index >= 0) {
-      this.getTypeOfCards(cardsType).splice(index, 1);
-    }
-  }
-
-  edit(cardsType: string, fruit: Card, event: MatChipEditedEvent) {
-    const value = event.value.trim();
-
-    if (!value) {
-      this.remove(cardsType, fruit);
-      return;
-    }
-
-    const index = this.getTypeOfCards(cardsType).indexOf(fruit);
-    if (index >= 0) {
-      this.getTypeOfCards(cardsType)[index].name = value;
-    }
-  }
-
-  private getTypeOfCards(type: string) {
-    switch (type) {
-      case 'LEO':
-        return this.leoCards;
-      case 'OUTPOST_1':
-        return this.outpost1Cards;
-      case 'OUTPOST_2':
-        return this.outpost2Cards;
-      default:
-        return this.rocketCards;
-    }
-  }
 
   selectCrew(crewType: string): void {
     this.playerForm.get('crewType')?.markAsTouched();

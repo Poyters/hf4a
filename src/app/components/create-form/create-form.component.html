@@ -1,4 +1,6 @@
-<mat-card>
+<h1>High Frontier 4 All - Save sheets</h1>
+
+<mat-card class="wrapper">
   <mat-card-content>
     <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
       <mat-step [stepControl]="scenarioFormGroup">
@@ -12,22 +14,26 @@
               {{ scenario.name }}
             </mat-chip-option>
           </mat-chip-listbox>
+
           @if (currentScenarioData) {
-          <h4>Seniority discs</h4>
-          <mat-chip-listbox
-            aria-label="Fish selection"
-            *ngIf="currentScenarioData"
-          >
-            <mat-chip-option
-              *ngFor="let disc of currentScenarioData?.seniorityDiscs"
-              (click)="selectSeniorityDiscs(disc)"
-              [selected]="
-                scenarioFormGroup.get('seniorityDiscs')?.value === disc
-              "
+          <div class="seniority-wrapper">
+            <mat-label>Seniority discs</mat-label>
+            <mat-chip-listbox
+              aria-label="Fish selection"
+              *ngIf="currentScenarioData"
             >
-              {{ disc }}
-            </mat-chip-option>
-          </mat-chip-listbox>
+              <mat-chip-option
+                *ngFor="let disc of currentScenarioData?.seniorityDiscs"
+                (click)="selectSeniorityDiscs(disc)"
+                [selected]="
+                  scenarioFormGroup.get('seniorityDiscs')?.value === disc
+                "
+              >
+                {{ disc }}
+              </mat-chip-option>
+            </mat-chip-listbox>
+          </div>
+
           }
 
           <div
@@ -90,8 +96,8 @@
           </div>
         </form>
       </mat-step>
-      <mat-step [stepControl]="secondFormGroup">
-        <form [formGroup]="secondFormGroup">
+      <mat-step [stepControl]="playersFormGroup">
+        <form [formGroup]="playersFormGroup">
           <ng-template matStepLabel
             >Players
             {{ currentScenarioData | scenarioPlayersRange }}</ng-template
@@ -104,14 +110,19 @@
             New Player
           </button>
 
-          <h3 *ngIf="currentScenarioData">Players</h3>
           <app-player
-            *ngFor="let player of players"
+            *ngFor="let player of playersFormGroup.get('players')?.value ?? []"
             [playerData]="player"
           ></app-player>
           <div>
             <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext>Next</button>
+            <button
+              mat-button
+              matStepperNext
+              [disabled]="!scenarioFormGroup.valid"
+            >
+              Next
+            </button>
           </div>
         </form>
       </mat-step>

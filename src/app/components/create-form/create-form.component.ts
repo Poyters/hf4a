@@ -62,24 +62,18 @@ export class CreateFormComponent {
     { validators: leftSeniorityDiscsValidator }
   );
 
-  secondFormGroup = new FormGroup({
-    secondCtrl: new FormControl('', Validators.required),
+  playersFormGroup = new FormGroup({
+    players: new FormControl<PlayerData[]>([]),
   });
-  isLinear = false;
+  isLinear = true;
 
   public players: PlayerData[] = [];
 
   constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {
-    // Subskrybuj zdarzenie valueChanges, aby reagować na zmiany w formularzu
-    this.scenarioFormGroup.valueChanges.subscribe(() => {
-      console.log('this.scenarioFormGroup', this.scenarioFormGroup);
-      // Tutaj możesz dodatkowo obsłużyć logikę po zmianie wartości w formularzu
-      console.log(
-        'awfa',
-        this.scenarioFormGroup.hasError('leftSeniorityDiscsMax')
-      );
+    this.playersFormGroup.valueChanges.subscribe(() => {
+      console.log('this.playersFormGroup', this.playersFormGroup);
     });
   }
 
@@ -90,8 +84,15 @@ export class CreateFormComponent {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log('res', result);
-      if (result) this.players.push(result);
+      if (result) {
+        const playersControl = this.playersFormGroup.get('players')?.value;
+
+        const newValue = playersControl
+          ? [...playersControl, result]
+          : [result];
+
+        this.playersFormGroup.get('players')?.setValue(newValue);
+      }
     });
   }
 
