@@ -6,14 +6,15 @@
       <mat-step [stepControl]="scenarioFormGroup">
         <form [formGroup]="scenarioFormGroup">
           <ng-template matStepLabel>Scenario</ng-template>
-          <mat-chip-listbox aria-label="Fish selection">
+          <!-- <mat-chip-listbox aria-label="Fish selection">
             <mat-chip-option
               *ngFor="let scenario of scenarios"
               (click)="selectScenario(scenario)"
             >
               {{ scenario.name }}
             </mat-chip-option>
-          </mat-chip-listbox>
+          </mat-chip-listbox> -->
+          <app-scenario></app-scenario>
 
           @if (currentScenarioData) {
           <div class="seniority-wrapper">

@@ -12,7 +12,7 @@ export class SaveSheetService {
   private playerData$ = new BehaviorSubject<PlayerData | null>(null);
   player$ = this.scenario$.asObservable();
 
-  setScenario(scenario: ScenarioData) {
+  setScenario(scenario: ScenarioData | null) {
     this.scenario$.next(scenario);
   }
 

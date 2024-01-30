@@ -1,0 +1,8 @@
+<mat-chip-listbox aria-label="Fish selection">
+  <mat-chip-option
+    *ngFor="let scenario of scenarios"
+    (click)="selectScenario(scenario)"
+  >
+    {{ scenario.name }}
+  </mat-chip-option>
+</mat-chip-listbox>

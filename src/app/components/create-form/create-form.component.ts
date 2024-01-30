@@ -24,6 +24,7 @@ import { PlayerComponent } from './player/player.component';
 import { ScenarioData } from '../../interfaces/scenarios.interface';
 import { MatStepperModule } from '@angular/material/stepper';
 import { leftSeniorityDiscsValidator } from '../../validators/leftSeniorityDiscs.validator';
+import { ScenarioComponent } from './scenario/scenario.component';
 
 @Component({
   selector: 'app-create-form',
@@ -41,6 +42,7 @@ import { leftSeniorityDiscsValidator } from '../../validators/leftSeniorityDiscs
     MatDialogModule,
     PlayerComponent,
     MatStepperModule,
+    ScenarioComponent,
   ],
   templateUrl: './create-form.component.html',
   styleUrl: './create-form.component.scss',
