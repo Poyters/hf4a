@@ -6,10 +6,12 @@ export interface PlayerData {
   playerName: string;
   crewType: string;
   aquas: number;
-  cards: {
-    rocket: Card[];
-    leo: Card[];
-    outpost1: Card[];
-    outpost2: Card[];
-  };
+  cards: PlayerCards;
+}
+
+export interface PlayerCards {
+  rocket: Card[];
+  leo: Card[];
+  outpost1: Card[];
+  outpost2: Card[];
 }

@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
@@ -12,11 +12,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatInputModule } from '@angular/material/input';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { crewConfig } from '../../../../configs/crew.config';
-import { PlayerData, Card } from '../../../../interfaces/player.interface';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Card } from '../../../../interfaces/player.interface';
 
 @Component({
   selector: 'app-card-chips',
