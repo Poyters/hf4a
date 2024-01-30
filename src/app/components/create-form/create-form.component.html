@@ -6,89 +6,14 @@
       <mat-step [stepControl]="scenarioFormGroup">
         <form [formGroup]="scenarioFormGroup">
           <ng-template matStepLabel>Scenario</ng-template>
-          <!-- <mat-chip-listbox aria-label="Fish selection">
-            <mat-chip-option
-              *ngFor="let scenario of scenarios"
-              (click)="selectScenario(scenario)"
-            >
-              {{ scenario.name }}
-            </mat-chip-option>
-          </mat-chip-listbox> -->
+
           <app-scenario></app-scenario>
+          <app-seniority-discs></app-seniority-discs>
 
-          @if (currentScenarioData) {
-          <div class="seniority-wrapper">
-            <mat-label>Seniority discs</mat-label>
-            <mat-chip-listbox
-              aria-label="Fish selection"
-              *ngIf="currentScenarioData"
-            >
-              <mat-chip-option
-                *ngFor="let disc of currentScenarioData?.seniorityDiscs"
-                (click)="selectSeniorityDiscs(disc)"
-                [selected]="
-                  scenarioFormGroup.get('seniorityDiscs')?.value === disc
-                "
-              >
-                {{ disc }}
-              </mat-chip-option>
-            </mat-chip-listbox>
-          </div>
-
-          }
-
-          <div
-            *ngIf="scenarioFormGroup.get('seniorityDiscs')?.value"
-            class="discs-wrapper"
-          >
-            <mat-form-field>
-              <mat-label>Left discs</mat-label>
-              <input
-                matInput
-                value="1"
-                type="number"
-                formControlName="leftSeniorityDiscs"
-                [min]="1"
-                [max]="scenarioFormGroup.get('seniorityDiscs')?.value ?? 7"
-              />
-
-              @if (scenarioFormGroup.hasError('leftSeniorityDiscsMax')) {
-              <mat-error
-                >Max
-                {{ scenarioFormGroup.get("seniorityDiscs")?.value }}</mat-error
-              >
-              }
-            </mat-form-field>
-
-            <mat-form-field>
-              <mat-label>Year position</mat-label>
-              <input
-                matInput
-                value="1"
-                type="number"
-                formControlName="yearPosition"
-              />
-              @if (scenarioFormGroup.get('yearPosition')?.hasError('min')) {
-              <mat-error>
-                Min
-                {{
-                  scenarioFormGroup.get("yearPosition")?.getError("min").min
-                }}</mat-error
-              >
-              } @if (scenarioFormGroup.get('yearPosition')?.hasError('max')) {
-              <mat-error>
-                Max
-                {{
-                  scenarioFormGroup.get("yearPosition")?.getError("max").max
-                }}</mat-error
-              >
-              }
-            </mat-form-field>
-          </div>
-
-          <div>
+          <div class="buttons-wrapper">
             <button
-              mat-button
+              mat-raised-button
+              color="primary"
               matStepperNext
               [disabled]="!scenarioFormGroup.valid"
             >
@@ -101,26 +26,35 @@
         <form [formGroup]="playersFormGroup">
           <ng-template matStepLabel
             >Players
-            {{ currentScenarioData | scenarioPlayersRange }}</ng-template
+            {{
+              scenarioFormGroup.get("currentScenario")?.value
+                | scenarioPlayersRange
+            }}</ng-template
           >
           <button
-            mat-button
+            class="new-player"
+            mat-raised-button
+            color="primary"
             (click)="openPlayerDialog()"
-            *ngIf="currentScenarioData"
           >
             New Player
           </button>
+
+          <p *ngIf="!playersFormGroup.get('players')?.value?.length">
+            No players!
+          </p>
 
           <app-player
             *ngFor="let player of playersFormGroup.get('players')?.value ?? []"
             [playerData]="player"
           ></app-player>
-          <div>
-            <button mat-button matStepperPrevious>Back</button>
+          <div class="buttons-wrapper">
+            <button mat-raised-button matStepperPrevious>Back</button>
             <button
-              mat-button
+              mat-raised-button
+              color="primary"
               matStepperNext
-              [disabled]="!scenarioFormGroup.valid"
+              [disabled]="!playersFormGroup.valid"
             >
               Next
             </button>
@@ -130,11 +64,21 @@
       <mat-step>
         <ng-template matStepLabel>Done</ng-template>
         <p>You are now done.</p>
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button (click)="stepper.reset()">Reset</button>
+        <div class="buttons-wrapper">
+          <button mat-raised-button matStepperPrevious>Back</button>
+          <button mat-raised-button color="primary" (click)="stepper.reset()">
+            Save
+          </button>
         </div>
       </mat-step>
     </mat-stepper>
   </mat-card-content>
+
+  <div style="border: 1px solid green; max-width: 300px">
+    {{ scenarioFormGroup.value | json }}
+  </div>
+
+  <div style="border: 1px solid red; max-width: 300px">
+    {{ playersFormGroup.value | json }}
+  </div>
 </mat-card>

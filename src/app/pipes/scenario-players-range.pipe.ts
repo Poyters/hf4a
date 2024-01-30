@@ -6,7 +6,7 @@ import { ScenarioData } from '../interfaces/scenarios.interface';
   standalone: true,
 })
 export class ScenarioPlayersRangePipe implements PipeTransform {
-  transform(value: ScenarioData | undefined): unknown {
+  transform(value: ScenarioData | null | undefined): unknown {
     if (!value) {
       return null;
     }

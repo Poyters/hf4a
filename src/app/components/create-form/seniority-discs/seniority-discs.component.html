@@ -1,0 +1,63 @@
+<ng-container [formGroup]="scenarioFormGroup">
+  @if (scenarioFormGroup.get('currentScenario')?.value) {
+  <div class="seniority-wrapper">
+    <mat-label>Seniority discs</mat-label>
+    <mat-chip-listbox aria-label="Fish selection">
+      <mat-chip-option
+        *ngFor="
+          let disc of scenarioFormGroup.get('currentScenario')?.value
+            ?.seniorityDiscs
+        "
+        (click)="selectSeniorityDiscs(disc)"
+        [selected]="scenarioFormGroup.get('seniorityDiscs')?.value === disc"
+      >
+        {{ disc }}
+      </mat-chip-option>
+    </mat-chip-listbox>
+  </div>
+
+  }
+
+  <div
+    *ngIf="scenarioFormGroup.get('seniorityDiscs')?.value"
+    class="discs-wrapper"
+  >
+    <mat-form-field>
+      <mat-label>Left discs</mat-label>
+      <input
+        matInput
+        value="1"
+        type="number"
+        formControlName="leftSeniorityDiscs"
+        [min]="1"
+        [max]="scenarioFormGroup.get('seniorityDiscs')?.value ?? 7"
+      />
+
+      @if (scenarioFormGroup.hasError('leftSeniorityDiscsMax')) {
+      <mat-error
+        >Max {{ scenarioFormGroup.get("seniorityDiscs")?.value }}</mat-error
+      >
+      }
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Year position</mat-label>
+      <input matInput value="1" type="number" formControlName="yearPosition" />
+      @if (scenarioFormGroup.get('yearPosition')?.hasError('min')) {
+      <mat-error>
+        Min
+        {{
+          scenarioFormGroup.get("yearPosition")?.getError("min").min
+        }}</mat-error
+      >
+      } @if (scenarioFormGroup.get('yearPosition')?.hasError('max')) {
+      <mat-error>
+        Max
+        {{
+          scenarioFormGroup.get("yearPosition")?.getError("max").max
+        }}</mat-error
+      >
+      }
+    </mat-form-field>
+  </div></ng-container
+>

@@ -9,10 +9,7 @@ import {
   FormControl,
   ReactiveFormsModule,
   FormGroup,
-  ValidationErrors,
-  ValidatorFn,
   Validators,
-  AbstractControl,
 } from '@angular/forms';
 import { ScenarioPlayersRangePipe } from '../../pipes/scenario-players-range.pipe';
 import { MatCardModule } from '@angular/material/card';
@@ -26,7 +23,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { leftSeniorityDiscsValidator } from '../../validators/leftSeniorityDiscs.validator';
 import { ScenarioComponent } from './scenario/scenario.component';
 import { SaveSheetService } from '../../services/save-sheet.service';
-import { Observable } from 'rxjs';
+import { SeniorityDiscsComponent } from './seniority-discs/seniority-discs.component';
 
 @Component({
   selector: 'app-create-form',
@@ -45,17 +42,18 @@ import { Observable } from 'rxjs';
     PlayerComponent,
     MatStepperModule,
     ScenarioComponent,
+    SeniorityDiscsComponent,
   ],
   templateUrl: './create-form.component.html',
   styleUrl: './create-form.component.scss',
 })
 export class CreateFormComponent {
-  private currentScenario$: Observable<ScenarioData | null> =
-    this.saveSheetService.selectedScenario$;
-
   scenarioFormGroup = new FormGroup(
     {
-      currentScenario: new FormControl('', Validators.required),
+      currentScenario: new FormControl<ScenarioData | null>(
+        null,
+        Validators.required
+      ),
       seniorityDiscs: new FormControl<number | null>(null, Validators.required),
       leftSeniorityDiscs: new FormControl(1, [Validators.required]),
       yearPosition: new FormControl(1, [
@@ -74,20 +72,11 @@ export class CreateFormComponent {
 
   public players: PlayerData[] = [];
 
-  constructor(
-    public dialog: MatDialog,
-    private saveSheetService: SaveSheetService
-  ) {}
+  constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.playersFormGroup.valueChanges.subscribe(() => {
       console.log('this.playersFormGroup', this.playersFormGroup);
-    });
-
-    this.currentScenario$.subscribe((scenario) => {
-      this.scenarioFormGroup
-        .get('currentScenario')
-        ?.setValue(scenario?.name ?? null);
     });
   }
 
@@ -108,35 +97,5 @@ export class CreateFormComponent {
         this.playersFormGroup.get('players')?.setValue(newValue);
       }
     });
-  }
-
-  selectScenario(scenario: any): void {
-    if (
-      scenario.name === this.scenarioFormGroup.get('currentScenario')?.value
-    ) {
-      this.scenarioFormGroup.get('currentScenario')?.setValue('');
-      return;
-    }
-
-    this.scenarioFormGroup.get('currentScenario')?.setValue(scenario.name);
-    this.scenarioFormGroup
-      .get('seniorityDiscs')
-      ?.setValue(this.currentScenarioData?.seniorityDiscs[0] ?? null);
-  }
-
-  selectSeniorityDiscs(disc: number): void {
-    if (disc === this.scenarioFormGroup.get('seniorityDiscs')?.value) {
-      this.scenarioFormGroup.get('seniorityDiscs')?.setValue(null);
-      return;
-    }
-
-    this.scenarioFormGroup.get('seniorityDiscs')?.setValue(disc);
-  }
-
-  get currentScenarioData() {
-    return scenariosConfig.find(
-      (scenario) =>
-        scenario.name === this.scenarioFormGroup.get('currentScenario')?.value
-    );
   }
 }

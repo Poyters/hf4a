@@ -3,13 +3,6 @@
   flex-direction: column;
 }
 
-.discs-wrapper {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  gap: 20px;
-}
-
 .wrapper {
   max-width: 720px;
   margin-top: 50px;
@@ -21,4 +14,15 @@
 
 .seniority-discs {
   margin-bottom: 10px;
+}
+
+.new-player {
+  margin-bottom: 30px;
+}
+
+.buttons-wrapper {
+  display: flex;
+  margin-top: 20px;
+  gap: 20px;
+  justify-content: end;
 }
