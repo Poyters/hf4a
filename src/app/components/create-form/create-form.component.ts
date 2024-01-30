@@ -25,6 +25,8 @@ import { ScenarioData } from '../../interfaces/scenarios.interface';
 import { MatStepperModule } from '@angular/material/stepper';
 import { leftSeniorityDiscsValidator } from '../../validators/leftSeniorityDiscs.validator';
 import { ScenarioComponent } from './scenario/scenario.component';
+import { SaveSheetService } from '../../services/save-sheet.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-create-form',
@@ -48,7 +50,8 @@ import { ScenarioComponent } from './scenario/scenario.component';
   styleUrl: './create-form.component.scss',
 })
 export class CreateFormComponent {
-  public scenarios = scenariosConfig;
+  private currentScenario$: Observable<ScenarioData | null> =
+    this.saveSheetService.selectedScenario$;
 
   scenarioFormGroup = new FormGroup(
     {
@@ -71,11 +74,20 @@ export class CreateFormComponent {
 
   public players: PlayerData[] = [];
 
-  constructor(public dialog: MatDialog) {}
+  constructor(
+    public dialog: MatDialog,
+    private saveSheetService: SaveSheetService
+  ) {}
 
   ngOnInit(): void {
     this.playersFormGroup.valueChanges.subscribe(() => {
       console.log('this.playersFormGroup', this.playersFormGroup);
+    });
+
+    this.currentScenario$.subscribe((scenario) => {
+      this.scenarioFormGroup
+        .get('currentScenario')
+        ?.setValue(scenario?.name ?? null);
     });
   }
 
