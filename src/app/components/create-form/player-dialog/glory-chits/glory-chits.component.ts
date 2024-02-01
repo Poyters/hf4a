@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {
   FormGroup,
   FormGroupDirective,
@@ -26,6 +26,8 @@ import { gloryChitConfig } from '../../../../configs/gloryChit.config';
   styleUrl: './glory-chits.component.scss',
 })
 export class GloryChitsComponent {
+  @Input() occupiedGloryChits!: string[];
+
   gloryChits = gloryChitConfig.availableChits;
   playerFormGroup!: FormGroup;
 
@@ -33,6 +35,8 @@ export class GloryChitsComponent {
 
   ngOnInit(): void {
     this.playerFormGroup = this.rootFormGroup.control;
+
+    console.log('occuppiedGloryChits', this.occupiedGloryChits);
   }
 
   selectGloryChit(gloryChit: string): void {

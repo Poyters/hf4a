@@ -5,6 +5,7 @@
       *ngFor="let gloryChit of gloryChits"
       (click)="selectGloryChit(gloryChit)"
       [selected]="playerFormGroup.get('gloryChits')?.value?.includes(gloryChit)"
+      [disabled]="occupiedGloryChits.includes(gloryChit)"
     >
       {{ gloryChit }}
     </mat-chip-option>

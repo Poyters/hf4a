@@ -20,6 +20,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { getOccupiedCrews } from '../../../utils/crews';
 import { MatDividerModule } from '@angular/material/divider';
 import { GloryChitsComponent } from './glory-chits/glory-chits.component';
+import { getOccupiedGloryChits } from '../../../utils/gloryChits';
 
 export interface PlayerDialogData {
   players: PlayerData[];
@@ -55,6 +56,7 @@ export class PlayerDialogComponent {
   handCards: Card[] = [];
   public crews = crewConfig;
   public occuppiedCrews: string[] = [];
+  public occuppiedGloryChits: string[] = [];
 
   playerForm = new FormGroup({
     playerName: new FormControl('', Validators.required),
@@ -68,6 +70,7 @@ export class PlayerDialogComponent {
     @Inject(MAT_DIALOG_DATA) public data: PlayerDialogData
   ) {
     this.occuppiedCrews = getOccupiedCrews(this.data.players);
+    this.occuppiedGloryChits = getOccupiedGloryChits(this.data.players);
   }
 
   ngOnInit(): void {
