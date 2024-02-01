@@ -1,3 +1,5 @@
+import { MapObject } from './map.interface';
+
 export interface Card {
   name: string;
 }
@@ -8,6 +10,9 @@ export interface PlayerData {
   aquas: number;
   cards: PlayerCards;
   gloryChits: string[];
+  prospects: MapObject[];
+  colonies: MapObject[];
+  factories: MapObject[];
 }
 
 export interface PlayerCards {

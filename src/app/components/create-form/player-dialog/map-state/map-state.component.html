@@ -56,7 +56,7 @@
   <h4>Colonies</h4>
   <mat-form-field class="chip-list">
     <mat-chip-grid #coloniesChip aria-label="Ex. Luna">
-      @for (colony of mapStateFormGroup.get('colonies')?.value ??[]; track
+      @for (colony of mapStateFormGroup.get('colonies')?.value ?? []; track
       colony) {
       <mat-chip-row
         (removed)="remove('COLONY', colony)"

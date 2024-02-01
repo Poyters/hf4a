@@ -5,11 +5,18 @@ import { PlayerCardsPipe } from '../../../pipes/player-cards.pipe';
 import { CommonModule } from '@angular/common';
 import { crewConfig } from '../../../configs/crew.config';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
   selector: 'app-player',
   standalone: true,
-  imports: [CommonModule, MatExpansionModule, PlayerCardsPipe, MatChipsModule],
+  imports: [
+    CommonModule,
+    MatExpansionModule,
+    PlayerCardsPipe,
+    MatChipsModule,
+    MatDividerModule,
+  ],
   templateUrl: './player.component.html',
   styleUrl: './player.component.scss',
 })

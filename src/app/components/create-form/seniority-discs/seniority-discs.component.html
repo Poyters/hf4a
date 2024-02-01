@@ -22,7 +22,7 @@
     *ngIf="scenarioFormGroup.get('seniorityDiscs')?.value"
     class="discs-wrapper"
   >
-    <mat-form-field>
+    <mat-form-field class="disc-field">
       <mat-label>Left discs</mat-label>
       <input
         matInput
@@ -40,7 +40,7 @@
       }
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field class="disc-field">
       <mat-label>Year position</mat-label>
       <input matInput value="1" type="number" formControlName="yearPosition" />
       @if (scenarioFormGroup.get('yearPosition')?.hasError('min')) {
