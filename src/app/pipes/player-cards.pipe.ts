@@ -11,6 +11,6 @@ export class PlayerCardsPipe implements PipeTransform {
       return null;
     }
 
-    return cards.map((card) => card.name).toString();
+    return cards.map((card) => card.name).join(', ');
   }
 }

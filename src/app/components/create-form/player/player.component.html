@@ -8,6 +8,10 @@
     </mat-expansion-panel-header>
     <div class="player-details-wrapper"></div>
     <p>Aqua: {{ playerData?.aquas }}</p>
-    <p>Rocket Cards: {{ playerData?.cards?.rocket | playerCards }}</p>
+    <p>Rocket cards: {{ playerData?.cards?.rocket | playerCards }}</p>
+    <p>LEO cards: {{ playerData?.cards?.leo | playerCards }}</p>
+    <p>Outpost 1 cards: {{ playerData?.cards?.outpost1 | playerCards }}</p>
+    <p>Outpost 2 cards: {{ playerData?.cards?.outpost2 | playerCards }}</p>
+    <p>Hand cards: {{ playerData?.cards?.hand | playerCards }}</p>
   </mat-expansion-panel>
 </mat-accordion>

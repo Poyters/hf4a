@@ -18,6 +18,7 @@ import { crewConfig } from '../../../configs/crew.config';
 import { PlayerData, Card } from '../../../interfaces/player.interface';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { getOccupiedCrews } from '../../../utils/crews';
+import { MatDividerModule } from '@angular/material/divider';
 
 export interface PlayerDialogData {
   players: PlayerData[];
@@ -37,6 +38,7 @@ export interface PlayerDialogData {
     MatIconModule,
     MatExpansionModule,
     MatInputModule,
+    MatDividerModule,
   ],
   templateUrl: './player-dialog.component.html',
   styleUrl: './player-dialog.component.scss',
@@ -48,6 +50,7 @@ export class PlayerDialogComponent {
   leoCards: Card[] = [];
   outpost1Cards: Card[] = [];
   outpost2Cards: Card[] = [];
+  handCards: Card[] = [];
   public crews = crewConfig;
   public occuppiedCrews: string[] = [];
 
@@ -89,6 +92,7 @@ export class PlayerDialogComponent {
           leo: this.leoCards,
           outpost1: this.outpost1Cards,
           outpost2: this.outpost2Cards,
+          hand: this.handCards,
         },
       });
     }
@@ -134,6 +138,8 @@ export class PlayerDialogComponent {
         return this.outpost1Cards;
       case 'OUTPOST_2':
         return this.outpost2Cards;
+      case 'HAND':
+        return this.handCards;
       default:
         return this.rocketCards;
     }

@@ -14,4 +14,5 @@ export interface PlayerCards {
   leo: Card[];
   outpost1: Card[];
   outpost2: Card[];
+  hand: Card[];
 }

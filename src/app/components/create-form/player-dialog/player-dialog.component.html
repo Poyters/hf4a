@@ -2,7 +2,7 @@
   <h2 mat-dialog-title>Player {{ playerForm.get("playerName")?.value }}</h2>
   <mat-dialog-content class="mat-typography">
     <form [formGroup]="playerForm">
-      <h3>Crew type</h3>
+      <h4>Crew type</h4>
       <mat-chip-listbox aria-label="Crew selection">
         <mat-chip-option
           *ngFor="let crew of crews"
@@ -50,7 +50,10 @@
         </mat-form-field>
       </div>
 
-      <h3>Rocket</h3>
+      <mat-divider></mat-divider>
+      <h2>Cards</h2>
+
+      <h4>Rocket</h4>
       <mat-form-field class="chip-list">
         <mat-chip-grid #rocketCardsChip aria-label="Enter Rocket cards">
           @for (rocketCard of rocketCards; track rocketCard) {
@@ -79,7 +82,7 @@
         </mat-chip-grid>
       </mat-form-field>
 
-      <h3>LEO</h3>
+      <h4>LEO</h4>
       <mat-form-field class="chip-list">
         <mat-chip-grid #leoCardsChip aria-label="Enter LEO cards">
           @for (leoCard of leoCards; track leoCard) {
@@ -105,7 +108,7 @@
         </mat-chip-grid>
       </mat-form-field>
 
-      <h3>Outpost 1</h3>
+      <h4>Outpost 1</h4>
       <mat-form-field class="chip-list">
         <mat-chip-grid #outpost1CardsChip aria-label="Enter outpost 1 cards">
           @for (outpost1Card of outpost1Cards; track outpost1Card) {
@@ -134,7 +137,7 @@
         </mat-chip-grid>
       </mat-form-field>
 
-      <h3>Outpost 2</h3>
+      <h4>Outpost 2</h4>
       <mat-form-field class="chip-list">
         <mat-chip-grid #outpost2CardsChip aria-label="Enter OUTPOST_2 cards">
           @for (outpost2Card of outpost2Cards; track outpost2Card) {
@@ -159,6 +162,32 @@
             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
             [matChipInputAddOnBlur]="addOnBlur"
             (matChipInputTokenEnd)="add('OUTPOST_2', $event)"
+          />
+        </mat-chip-grid>
+      </mat-form-field>
+
+      <h4>Hand</h4>
+      <mat-form-field class="chip-list">
+        <mat-chip-grid #handCardsChip aria-label="Enter HAND cards">
+          @for (handCard of handCards; track handCard) {
+          <mat-chip-row
+            (removed)="remove('HAND', handCard)"
+            [editable]="true"
+            (edited)="edit('HAND', handCard, $event)"
+            [aria-description]="'press enter to edit ' + handCard.name"
+          >
+            {{ handCard.name }}
+            <button matChipRemove [attr.aria-label]="'remove ' + handCard.name">
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip-row>
+          }
+          <input
+            placeholder="New HAND card..."
+            [matChipInputFor]="handCardsChip"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            [matChipInputAddOnBlur]="addOnBlur"
+            (matChipInputTokenEnd)="add('HAND', $event)"
           />
         </mat-chip-grid>
       </mat-form-field>
