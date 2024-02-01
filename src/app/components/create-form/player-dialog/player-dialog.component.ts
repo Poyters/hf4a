@@ -19,6 +19,7 @@ import { PlayerData, Card } from '../../../interfaces/player.interface';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { getOccupiedCrews } from '../../../utils/crews';
 import { MatDividerModule } from '@angular/material/divider';
+import { GloryChitsComponent } from './glory-chits/glory-chits.component';
 
 export interface PlayerDialogData {
   players: PlayerData[];
@@ -39,6 +40,7 @@ export interface PlayerDialogData {
     MatExpansionModule,
     MatInputModule,
     MatDividerModule,
+    GloryChitsComponent,
   ],
   templateUrl: './player-dialog.component.html',
   styleUrl: './player-dialog.component.scss',
@@ -58,6 +60,7 @@ export class PlayerDialogComponent {
     playerName: new FormControl('', Validators.required),
     aquas: new FormControl(0, [Validators.min(0), Validators.max(50)]),
     crewType: new FormControl('', Validators.required),
+    gloryChits: new FormControl<string[]>([]),
   });
 
   constructor(
@@ -65,9 +68,12 @@ export class PlayerDialogComponent {
     @Inject(MAT_DIALOG_DATA) public data: PlayerDialogData
   ) {
     this.occuppiedCrews = getOccupiedCrews(this.data.players);
+  }
 
-    console.log('this.data.players', this.data.players);
-    console.log('this.occuppiedCrews', this.occuppiedCrews);
+  ngOnInit(): void {
+    this.playerForm.valueChanges.subscribe(() => {
+      console.log('player form', this.playerForm.get('gloryChits'));
+    });
   }
 
   selectCrew(crewType: string): void {

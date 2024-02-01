@@ -7,6 +7,7 @@ export interface PlayerData {
   crewType: string;
   aquas: number;
   cards: PlayerCards;
+  gloryChits: string[];
 }
 
 export interface PlayerCards {

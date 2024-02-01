@@ -8,6 +8,7 @@
     </mat-expansion-panel-header>
     <div class="player-details-wrapper"></div>
     <p>Aqua: {{ playerData?.aquas }}</p>
+    <p>Glory chits: {{ playerData?.gloryChits | json }}</p>
     <p>Rocket cards: {{ playerData?.cards?.rocket | playerCards }}</p>
     <p>LEO cards: {{ playerData?.cards?.leo | playerCards }}</p>
     <p>Outpost 1 cards: {{ playerData?.cards?.outpost1 | playerCards }}</p>

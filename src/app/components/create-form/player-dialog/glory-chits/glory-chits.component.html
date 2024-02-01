@@ -1,0 +1,12 @@
+<ng-container [formGroup]="playerFormGroup">
+  <h4>Glory chits</h4>
+  <mat-chip-listbox aria-label="Glory chit selection" multiple>
+    <mat-chip-option
+      *ngFor="let gloryChit of gloryChits"
+      (click)="selectGloryChit(gloryChit)"
+      [selected]="playerFormGroup.get('gloryChits')?.value?.includes(gloryChit)"
+    >
+      {{ gloryChit }}
+    </mat-chip-option>
+  </mat-chip-listbox>
+</ng-container>
