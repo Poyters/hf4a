@@ -21,6 +21,8 @@ import { getOccupiedCrews } from '../../../utils/crews';
 import { MatDividerModule } from '@angular/material/divider';
 import { GloryChitsComponent } from './glory-chits/glory-chits.component';
 import { getOccupiedGloryChits } from '../../../utils/gloryChits';
+import { MapObject } from '../../../interfaces/map.interface';
+import { MapStateComponent } from './map-state/map-state.component';
 
 export interface PlayerDialogData {
   players: PlayerData[];
@@ -42,6 +44,7 @@ export interface PlayerDialogData {
     MatInputModule,
     MatDividerModule,
     GloryChitsComponent,
+    MapStateComponent,
   ],
   templateUrl: './player-dialog.component.html',
   styleUrl: './player-dialog.component.scss',
@@ -63,6 +66,9 @@ export class PlayerDialogComponent {
     aquas: new FormControl(0, [Validators.min(0), Validators.max(50)]),
     crewType: new FormControl('', Validators.required),
     gloryChits: new FormControl<string[]>([]),
+    colonies: new FormControl<MapObject[]>([]),
+    factories: new FormControl<MapObject[]>([]),
+    prospects: new FormControl<MapObject[]>([]),
   });
 
   constructor(

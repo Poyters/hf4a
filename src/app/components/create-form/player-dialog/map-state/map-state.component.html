@@ -1,0 +1,82 @@
+<ng-container [formGroup]="mapStateFormGroup">
+  <h4>Prospects</h4>
+  <mat-form-field class="chip-list">
+    <mat-chip-grid #prospectsChip aria-label="Ex. Luna">
+      @for (prospect of mapStateFormGroup.get('prospects')?.value ??[]; track
+      prospect) {
+      <mat-chip-row
+        (removed)="remove('PROSPECTS', prospect)"
+        [editable]="true"
+        (edited)="edit('PROSPECTS', prospect, $event)"
+        [aria-description]="'press enter to edit ' + prospect.name"
+      >
+        {{ prospect.name }}
+        <button matChipRemove [attr.aria-label]="'remove ' + prospect.name">
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-chip-row>
+      }
+      <input
+        placeholder="Ex. Luna"
+        [matChipInputFor]="prospectsChip"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        [matChipInputAddOnBlur]="addOnBlur"
+        (matChipInputTokenEnd)="add('PROSPECTS', $event)"
+      />
+    </mat-chip-grid>
+  </mat-form-field>
+
+  <h4>Factories</h4>
+  <mat-form-field class="chip-list">
+    <mat-chip-grid #factoriesChip aria-label="Ex. Luna">
+      @for (factory of mapStateFormGroup.get('factories')?.value ??[]; track
+      factory) {
+      <mat-chip-row
+        (removed)="remove('FACTORY', factory)"
+        [editable]="true"
+        (edited)="edit('FACTORY', factory, $event)"
+        [aria-description]="'press enter to edit ' + factory.name"
+      >
+        {{ factory.name }}
+        <button matChipRemove [attr.aria-label]="'remove ' + factory.name">
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-chip-row>
+      }
+      <input
+        placeholder="Ex. Hermes"
+        [matChipInputFor]="factoriesChip"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        [matChipInputAddOnBlur]="addOnBlur"
+        (matChipInputTokenEnd)="add('FACTORY', $event)"
+      />
+    </mat-chip-grid>
+  </mat-form-field>
+
+  <h4>Colonies</h4>
+  <mat-form-field class="chip-list">
+    <mat-chip-grid #coloniesChip aria-label="Ex. Luna">
+      @for (colony of mapStateFormGroup.get('colonies')?.value ??[]; track
+      colony) {
+      <mat-chip-row
+        (removed)="remove('COLONY', colony)"
+        [editable]="true"
+        (edited)="edit('COLONY', colony, $event)"
+        [aria-description]="'press enter to edit ' + colony.name"
+      >
+        {{ colony.name }}
+        <button matChipRemove [attr.aria-label]="'remove ' + colony.name">
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-chip-row>
+      }
+      <input
+        placeholder="Ex. Hermes"
+        [matChipInputFor]="coloniesChip"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        [matChipInputAddOnBlur]="addOnBlur"
+        (matChipInputTokenEnd)="add('COLONY', $event)"
+      />
+    </mat-chip-grid>
+  </mat-form-field>
+</ng-container>
