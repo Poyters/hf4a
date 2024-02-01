@@ -87,7 +87,11 @@ export class CreateFormComponent {
 
   openPlayerDialog() {
     const dialogRef = this.dialog.open(PlayerDialogComponent, {
-      data: { aquas: 0, cards: {} },
+      data: {
+        aquas: 0,
+        cards: {},
+        players: this.playersFormGroup.get('players')?.value,
+      },
       minWidth: '500px',
     });
 

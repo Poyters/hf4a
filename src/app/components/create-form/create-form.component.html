@@ -54,8 +54,7 @@
           </div>
 
           <app-player
-            *ngFor="let player of playersFormGroup.get('players')?.value ?? []"
-            [playerData]="player"
+            [playersData]="playersFormGroup.get('players')?.value ?? []"
           ></app-player>
           <div class="buttons-wrapper">
             <button mat-raised-button matStepperPrevious>Back</button>
@@ -71,6 +70,21 @@
         </form>
       </mat-step>
       <mat-step>
+        <ng-template matStepLabel>Map state</ng-template>
+
+        <div class="buttons-wrapper">
+          <button mat-raised-button matStepperPrevious>Back</button>
+          <button
+            mat-raised-button
+            color="primary"
+            matStepperNext
+            [disabled]="!playersFormGroup.valid"
+          >
+            Next
+          </button>
+        </div>
+      </mat-step>
+      <mat-step>
         <ng-template matStepLabel>Done</ng-template>
         <p>You are now done.</p>
         <div class="buttons-wrapper">
@@ -82,12 +96,12 @@
       </mat-step>
     </mat-stepper>
   </mat-card-content>
-
-  <div style="border: 1px solid green; max-width: 300px">
-    {{ scenarioFormGroup.value | json }}
-  </div>
-
-  <div style="border: 1px solid red; max-width: 300px">
-    {{ playersFormGroup.value | json }}
-  </div>
 </mat-card>
+
+<div style="border: 1px solid green; max-width: 300px">
+  {{ scenarioFormGroup.value | json }}
+</div>
+
+<div style="border: 1px solid red; max-width: 300px">
+  {{ playersFormGroup.value | json }}
+</div>

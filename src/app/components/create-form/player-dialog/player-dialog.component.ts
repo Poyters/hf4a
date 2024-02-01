@@ -18,6 +18,10 @@ import { crewConfig } from '../../../configs/crew.config';
 import { PlayerData, Card } from '../../../interfaces/player.interface';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
+export interface PlayerDialogData {
+  players: PlayerData[];
+}
+
 @Component({
   selector: 'app-player-dialog',
   standalone: true,
@@ -44,6 +48,7 @@ export class PlayerDialogComponent {
   outpost1Cards: Card[] = [];
   outpost2Cards: Card[] = [];
   public crews = crewConfig;
+  public occuppiedCrews: string[] = [];
 
   playerForm = new FormGroup({
     playerName: new FormControl('', Validators.required),
@@ -53,8 +58,13 @@ export class PlayerDialogComponent {
 
   constructor(
     private dialogRef: MatDialogRef<PlayerDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: PlayerData
-  ) {}
+    @Inject(MAT_DIALOG_DATA) public data: PlayerDialogData
+  ) {
+    this.occuppiedCrews = this.data.players?.map((player) => player.crewType);
+
+    console.log('this.data.players', this.data.players);
+    console.log('this.occuppiedCrews', this.occuppiedCrews);
+  }
 
   selectCrew(crewType: string): void {
     this.playerForm.get('crewType')?.markAsTouched();

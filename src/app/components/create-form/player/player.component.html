@@ -1,5 +1,5 @@
 <mat-accordion>
-  <mat-expansion-panel>
+  <mat-expansion-panel *ngFor="let playerData of playersData">
     <mat-expansion-panel-header>
       <mat-panel-title> {{ playerData?.playerName }} </mat-panel-title>
       <mat-panel-description>

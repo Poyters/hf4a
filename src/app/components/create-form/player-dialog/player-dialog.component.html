@@ -6,7 +6,8 @@
       <mat-chip-listbox aria-label="Crew selection">
         <mat-chip-option
           *ngFor="let crew of crews"
-          (click)="selectCrew(crew.name)"
+          (click)="selectCrew(crew.type)"
+          [disabled]="occuppiedCrews.includes(crew.name)"
         >
           {{ crew.name }}
         </mat-chip-option>
