@@ -1,27 +1,20 @@
-# Hf4a
+# High Frontier 4 All board game Save Sheets
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.8.
+I'm a board gamer too, and I know how frustrating it can be to not have enough time to play your favorite game. That's why I came up with the idea to create online signups for the High Frontier 4 All board game.
 
-## Development server
+I tried to make the save process as fast as possible. As a result, saving sessions should not take more than 30 seconds per player and 30 seconds for the Game&Map state (e.g. 2 minutes for a 3-player game).
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Features
 
-## Code scaffolding
+- [x] Core game
+- [x] 6th player
+- [ ] Module 0
+- [ ] Module 1
+- [ ] Module 2
+- [ ] Module 3
+- [ ] Module 4
+- [ ] Module 5
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Found an issue?
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Just send me an e-mail explaining the problem, I will try to fix it as soon as possible.

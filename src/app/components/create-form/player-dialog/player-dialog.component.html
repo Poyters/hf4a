@@ -7,7 +7,7 @@
         <mat-chip-option
           *ngFor="let crew of crews"
           (click)="selectCrew(crew.type)"
-          [disabled]="occuppiedCrews.includes(crew.name)"
+          [disabled]="occuppiedCrews.includes(crew.type)"
         >
           {{ crew.name }}
         </mat-chip-option>

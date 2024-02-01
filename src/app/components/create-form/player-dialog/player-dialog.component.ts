@@ -17,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { crewConfig } from '../../../configs/crew.config';
 import { PlayerData, Card } from '../../../interfaces/player.interface';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { getOccupiedCrews } from '../../../utils/crews';
 
 export interface PlayerDialogData {
   players: PlayerData[];
@@ -60,7 +61,7 @@ export class PlayerDialogComponent {
     private dialogRef: MatDialogRef<PlayerDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: PlayerDialogData
   ) {
-    this.occuppiedCrews = this.data.players?.map((player) => player.crewType);
+    this.occuppiedCrews = getOccupiedCrews(this.data.players);
 
     console.log('this.data.players', this.data.players);
     console.log('this.occuppiedCrews', this.occuppiedCrews);

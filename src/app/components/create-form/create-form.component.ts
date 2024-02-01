@@ -75,13 +75,35 @@ export class CreateFormComponent {
   });
   isLinear = true;
 
-  public players: PlayerData[] = [];
+  public canAddMorePlayers = false;
 
   constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.playersFormGroup.valueChanges.subscribe(() => {
-      console.log('this.playersFormGroup', this.playersFormGroup);
+      this.canAddMorePlayers =
+        (this.scenarioFormGroup.get('currentScenario')?.value?.players?.max ??
+          0) > (this.playersFormGroup.get('players')?.value?.length ?? 0);
+
+      console.log(
+        'canAddMorePlayers A',
+        this.canAddMorePlayers,
+        this.scenarioFormGroup.get('currentScenario')?.value?.players?.max,
+        this.playersFormGroup.get('players')?.value?.length
+      );
+    });
+
+    this.scenarioFormGroup.valueChanges.subscribe(() => {
+      this.canAddMorePlayers =
+        (this.scenarioFormGroup.get('currentScenario')?.value?.players?.max ??
+          0) > (this.playersFormGroup.get('players')?.value?.length ?? 0);
+
+      console.log(
+        'canAddMorePlayers B',
+        this.canAddMorePlayers,
+        this.scenarioFormGroup.get('currentScenario')?.value?.players?.max,
+        this.playersFormGroup.get('players')?.value?.length
+      );
     });
   }
 
