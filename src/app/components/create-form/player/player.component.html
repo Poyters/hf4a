@@ -3,16 +3,51 @@
     <mat-expansion-panel-header>
       <mat-panel-title> {{ playerData?.playerName }} </mat-panel-title>
       <mat-panel-description>
-        {{ playerData?.crewType }}
+        {{ findCrewByType(playerData?.crewType)?.name }}
       </mat-panel-description>
     </mat-expansion-panel-header>
     <div class="player-details-wrapper"></div>
     <p>Aqua: {{ playerData?.aquas }}</p>
-    <p>Glory chits: {{ playerData?.gloryChits | json }}</p>
-    <p>Rocket cards: {{ playerData?.cards?.rocket | playerCards }}</p>
-    <p>LEO cards: {{ playerData?.cards?.leo | playerCards }}</p>
-    <p>Outpost 1 cards: {{ playerData?.cards?.outpost1 | playerCards }}</p>
-    <p>Outpost 2 cards: {{ playerData?.cards?.outpost2 | playerCards }}</p>
-    <p>Hand cards: {{ playerData?.cards?.hand | playerCards }}</p>
+    <h4>Glory chits</h4>
+    <mat-chip-listbox aria-label="Glory chit selection" multiple>
+      <mat-chip-option *ngFor="let gloryChit of playerData.gloryChits">
+        {{ gloryChit }}
+      </mat-chip-option>
+    </mat-chip-listbox>
+
+    <h4>Rocket cards</h4>
+    <mat-chip-listbox aria-label="Glory chit selection" multiple>
+      <mat-chip-option *ngFor="let card of playerData?.cards?.rocket">
+        {{ card.name }}
+      </mat-chip-option>
+    </mat-chip-listbox>
+
+    <h4>LEO</h4>
+    <mat-chip-listbox aria-label="Glory chit selection" multiple>
+      <mat-chip-option *ngFor="let card of playerData?.cards?.leo">
+        {{ card.name }}
+      </mat-chip-option>
+    </mat-chip-listbox>
+
+    <h4>Outpost 1</h4>
+    <mat-chip-listbox aria-label="Glory chit selection" multiple>
+      <mat-chip-option *ngFor="let card of playerData?.cards?.outpost1">
+        {{ card.name }}
+      </mat-chip-option>
+    </mat-chip-listbox>
+
+    <h4>Outpost 2</h4>
+    <mat-chip-listbox aria-label="Glory chit selection" multiple>
+      <mat-chip-option *ngFor="let card of playerData?.cards?.outpost2">
+        {{ card.name }}
+      </mat-chip-option>
+    </mat-chip-listbox>
+
+    <h4>Hand</h4>
+    <mat-chip-listbox aria-label="Glory chit selection" multiple>
+      <mat-chip-option *ngFor="let card of playerData?.cards?.hand">
+        {{ card.name }}
+      </mat-chip-option>
+    </mat-chip-listbox>
   </mat-expansion-panel>
 </mat-accordion>

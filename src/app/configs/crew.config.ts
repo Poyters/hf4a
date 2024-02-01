@@ -1,4 +1,6 @@
-export const crewConfig = [
+import { Crew } from '../interfaces/crew.interface';
+
+export const crewConfig: Crew[] = [
   {
     name: 'ROSCOSMOS',
     type: 'B',

@@ -26,3 +26,7 @@ export const getCrewColors = (crewTypes: string[]): string[] => {
 export const getCrewTypesByColors = (colors: string[]) => {
   return crewConfig.filter((c) => colors.includes(c.color)).map((c) => c.type);
 };
+
+export const findCrewByType = (crewType: string) => {
+  return crewConfig.find((record) => record.type === crewType) || null;
+};
