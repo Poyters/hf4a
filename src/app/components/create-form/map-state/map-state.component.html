@@ -1,0 +1,55 @@
+<ng-container [formGroup]="mapStateFormGroup">
+  <h4>Busted discs</h4>
+  <mat-form-field class="chip-list">
+    <mat-chip-grid #bustedDiscsChip aria-label="Ex. Luna">
+      @for (bustedDisc of mapStateFormGroup.get('bustedDiscs')?.value ??[];
+      track bustedDisc) {
+      <mat-chip-row
+        (removed)="remove('BUSTED_DISC', bustedDisc)"
+        [editable]="true"
+        (edited)="edit('BUSTED_DISC', bustedDisc, $event)"
+        [aria-description]="'press enter to edit ' + bustedDisc.name"
+      >
+        {{ bustedDisc.name }}
+        <button matChipRemove [attr.aria-label]="'remove ' + bustedDisc.name">
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-chip-row>
+      }
+      <input
+        placeholder="Ex. Luna"
+        [matChipInputFor]="bustedDiscsChip"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        [matChipInputAddOnBlur]="addOnBlur"
+        (matChipInputTokenEnd)="add('BUSTED_DISC', $event)"
+      />
+    </mat-chip-grid>
+  </mat-form-field>
+
+  <h4>Bridges</h4>
+  <mat-form-field class="chip-list">
+    <mat-chip-grid #bridgesChip aria-label="Ex. Luna">
+      @for (bridge of mapStateFormGroup.get('bridges')?.value ??[]; track
+      bridge) {
+      <mat-chip-row
+        (removed)="remove('BRIDGE', bridge)"
+        [editable]="true"
+        (edited)="edit('BRIDGE', bridge, $event)"
+        [aria-description]="'press enter to edit ' + bridge.name"
+      >
+        {{ bridge.name }}
+        <button matChipRemove [attr.aria-label]="'remove ' + bridge.name">
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-chip-row>
+      }
+      <input
+        placeholder="Ex. Hermes"
+        [matChipInputFor]="bridgesChip"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        [matChipInputAddOnBlur]="addOnBlur"
+        (matChipInputTokenEnd)="add('BRIDGE', $event)"
+      />
+    </mat-chip-grid>
+  </mat-form-field>
+</ng-container>

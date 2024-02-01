@@ -26,6 +26,8 @@ import { leftSeniorityDiscsValidator } from '../../validators/leftSeniorityDiscs
 import { ScenarioComponent } from './scenario/scenario.component';
 import { SaveSheetService } from '../../services/save-sheet.service';
 import { SeniorityDiscsComponent } from './seniority-discs/seniority-discs.component';
+import { MapObject } from '../../interfaces/map.interface';
+import { MapStateComponent } from './map-state/map-state.component';
 
 @Component({
   selector: 'app-create-form',
@@ -45,6 +47,7 @@ import { SeniorityDiscsComponent } from './seniority-discs/seniority-discs.compo
     MatStepperModule,
     ScenarioComponent,
     SeniorityDiscsComponent,
+    MapStateComponent,
   ],
   templateUrl: './create-form.component.html',
   styleUrl: './create-form.component.scss',
@@ -73,8 +76,13 @@ export class CreateFormComponent {
       [Validators.required, this.playersValidator()]
     ),
   });
-  isLinear = true;
 
+  mapStateFormGroup = new FormGroup({
+    bustedDiscs: new FormControl<MapObject[]>([]),
+    bridges: new FormControl<MapObject[]>([]),
+  });
+
+  public isLinear = true;
   public canAddMorePlayers = false;
 
   constructor(public dialog: MatDialog) {}

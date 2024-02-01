@@ -22,6 +22,7 @@
           </div>
         </form>
       </mat-step>
+
       <mat-step [stepControl]="playersFormGroup">
         <form [formGroup]="playersFormGroup">
           <ng-template matStepLabel
@@ -70,21 +71,27 @@
           </div>
         </form>
       </mat-step>
-      <mat-step>
-        <ng-template matStepLabel>Map state</ng-template>
 
-        <div class="buttons-wrapper">
-          <button mat-raised-button matStepperPrevious>Back</button>
-          <button
-            mat-raised-button
-            color="primary"
-            matStepperNext
-            [disabled]="!playersFormGroup.valid"
-          >
-            Next
-          </button>
-        </div>
+      <mat-step [stepControl]="mapStateFormGroup">
+        <form [formGroup]="mapStateFormGroup">
+          <ng-template matStepLabel>Map state</ng-template>
+
+          <app-map-state></app-map-state>
+
+          <div class="buttons-wrapper">
+            <button mat-raised-button matStepperPrevious>Back</button>
+            <button
+              mat-raised-button
+              color="primary"
+              matStepperNext
+              [disabled]="!mapStateFormGroup.valid"
+            >
+              Next
+            </button>
+          </div>
+        </form>
       </mat-step>
+
       <mat-step>
         <ng-template matStepLabel>Done</ng-template>
         <p>You are now done.</p>
@@ -105,4 +112,8 @@
 
 <div style="border: 1px solid red; max-width: 300px">
   {{ playersFormGroup.value | json }}
+</div>
+
+<div style="border: 1px solid blue; max-width: 300px">
+  {{ mapStateFormGroup.value | json }}
 </div>
