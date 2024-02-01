@@ -10,6 +10,8 @@ import {
   ReactiveFormsModule,
   FormGroup,
   Validators,
+  ValidatorFn,
+  AbstractControl,
 } from '@angular/forms';
 import { ScenarioPlayersRangePipe } from '../../pipes/scenario-players-range.pipe';
 import { MatCardModule } from '@angular/material/card';
@@ -66,7 +68,10 @@ export class CreateFormComponent {
   );
 
   playersFormGroup = new FormGroup({
-    players: new FormControl<PlayerData[]>([]),
+    players: new FormControl<PlayerData[]>(
+      [],
+      [Validators.required, this.playersValidator()]
+    ),
   });
   isLinear = true;
 
@@ -97,5 +102,30 @@ export class CreateFormComponent {
         this.playersFormGroup.get('players')?.setValue(newValue);
       }
     });
+  }
+
+  playersValidator(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const currentScenario =
+        this.scenarioFormGroup.get('currentScenario')?.value;
+
+      if (!currentScenario) {
+        return null; // Jeśli brak scenariusza, to walidacja przeszła pomyślnie
+      }
+
+      const minPlayers = currentScenario.players?.min;
+      const maxPlayers = currentScenario.players?.max;
+      const players = control.value;
+
+      if (minPlayers !== undefined && players.length < minPlayers) {
+        return { minPlayers: { required: minPlayers, actual: players.length } };
+      }
+
+      if (maxPlayers !== undefined && players.length > maxPlayers) {
+        return { maxPlayers: { required: maxPlayers, actual: players.length } };
+      }
+
+      return null; // Walidacja przeszła pomyślnie
+    };
   }
 }
