@@ -31,18 +31,27 @@
                 | scenarioPlayersRange
             }}</ng-template
           >
-          <button
-            class="new-player"
-            mat-raised-button
-            color="primary"
-            (click)="openPlayerDialog()"
-          >
-            New Player
-          </button>
+          <div class="players-section">
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="openPlayerDialog()"
+            >
+              New Player
+            </button>
 
-          <p *ngIf="!playersFormGroup.get('players')?.value?.length">
-            No players!
-          </p>
+            <p *ngIf="!playersFormGroup.valid">
+              You need to have at least
+              {{
+                scenarioFormGroup.get("currentScenario")?.value?.players?.min
+              }}
+              and maximum
+              {{
+                scenarioFormGroup.get("currentScenario")?.value?.players?.max
+              }}
+              players
+            </p>
+          </div>
 
           <app-player
             *ngFor="let player of playersFormGroup.get('players')?.value ?? []"

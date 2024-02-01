@@ -8,8 +8,13 @@
   margin-top: 50px;
 }
 
-.new-player {
-  margin-bottom: 30px;
+.players-section {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
 }
 
 .buttons-wrapper {

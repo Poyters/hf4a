@@ -29,7 +29,14 @@
 
         <mat-form-field class="aqua-field">
           <mat-label>Aquas</mat-label>
-          <input matInput value="0" type="number" formControlName="aquas" />
+          <input
+            matInput
+            value="0"
+            type="number"
+            formControlName="aquas"
+            min="0"
+            max="50"
+          />
           @if (playerForm.get('aquas')?.hasError('min')) {
           <mat-error>
             Min {{ playerForm.get("aquas")?.getError("min").min }}</mat-error

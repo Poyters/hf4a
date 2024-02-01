@@ -110,7 +110,7 @@ export class CreateFormComponent {
         this.scenarioFormGroup.get('currentScenario')?.value;
 
       if (!currentScenario) {
-        return null; // Jeśli brak scenariusza, to walidacja przeszła pomyślnie
+        return null;
       }
 
       const minPlayers = currentScenario.players?.min;
@@ -125,7 +125,7 @@ export class CreateFormComponent {
         return { maxPlayers: { required: maxPlayers, actual: players.length } };
       }
 
-      return null; // Walidacja przeszła pomyślnie
+      return null;
     };
   }
 }
