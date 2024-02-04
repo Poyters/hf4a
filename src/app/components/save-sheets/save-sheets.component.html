@@ -25,32 +25,34 @@
         [value]="calculateProgress(saveSheet)"
       ></mat-progress-bar>
     </mat-expansion-panel-header>
-    <mat-divider></mat-divider>
-    <h4>Players</h4>
-    <mat-chip-listbox>
-      <mat-chip-option
-        *ngFor="let player of saveSheet.players"
-        [ngStyle]="{
-          'background-color': findCrewByType(player.crewType)?.color
-        }"
-      >
-        {{ player.playerName }}
-      </mat-chip-option>
-    </mat-chip-listbox>
-
-    <mat-divider></mat-divider>
-    <h4>Map state</h4>
-    <mat-chip-listbox>
-      <mat-chip-option>
-        Seniority discs {{ saveSheet?.seniorityDiscs }}
-      </mat-chip-option>
-      <mat-chip-option>
-        Left seniority discs {{ saveSheet?.leftSeniorityDiscs }}
-      </mat-chip-option>
-      <mat-chip-option>
-        Year position {{ saveSheet?.yearPosition }}
-      </mat-chip-option>
+    <div class="expanded-wrapper">
       <mat-divider></mat-divider>
-    </mat-chip-listbox>
+      <h4>Players</h4>
+      <mat-chip-listbox>
+        <mat-chip-option
+          *ngFor="let player of saveSheet.players"
+          [ngStyle]="{
+            'background-color': findCrewByType(player.crewType)?.color
+          }"
+        >
+          {{ player.playerName }}
+        </mat-chip-option>
+      </mat-chip-listbox>
+
+      <mat-divider></mat-divider>
+      <h4>Map state</h4>
+      <mat-chip-listbox>
+        <mat-chip-option>
+          Seniority discs {{ saveSheet?.seniorityDiscs }}
+        </mat-chip-option>
+        <mat-chip-option>
+          Left seniority discs {{ saveSheet?.leftSeniorityDiscs }}
+        </mat-chip-option>
+        <mat-chip-option>
+          Year position {{ saveSheet?.yearPosition }}
+        </mat-chip-option>
+        <mat-divider></mat-divider>
+      </mat-chip-listbox>
+    </div>
   </mat-expansion-panel>
 </mat-accordion>

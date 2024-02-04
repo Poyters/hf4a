@@ -1,1 +1,45 @@
-<p>load-sheet works! {{ saveSheet?.id }}</p>
+<mat-card class="wrapper">
+  <mat-card-content>
+    <mat-vertical-stepper [linear]="true" #stepper>
+      <mat-step>
+        <ng-template matStepLabel>Game</ng-template>
+        <ol>
+          <li>Set left discs at {{ saveSheet?.leftSeniorityDiscs }}</li>
+          <li>Year position at {{ saveSheet?.yearPosition }}</li>
+        </ol>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Map</ng-template>
+        <ol>
+          <li>
+            Put busted discs at {{ saveSheet?.mapState?.bustedDiscs | json }}
+          </li>
+          <li>Year position at {{ saveSheet?.mapState?.bridges | json }}</li>
+        </ol>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Players</ng-template>
+        set up players
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        You are now done.
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.reset()">Let's play!</button>
+        </div>
+      </mat-step>
+    </mat-vertical-stepper>
+  </mat-card-content></mat-card
+>
