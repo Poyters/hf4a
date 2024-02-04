@@ -69,6 +69,7 @@ export class PlayerDialogComponent {
     colonies: new FormControl<MapObject[]>([]),
     factories: new FormControl<MapObject[]>([]),
     prospects: new FormControl<MapObject[]>([]),
+    rocketPosition: new FormControl('', Validators.required),
   });
 
   constructor(

@@ -13,6 +13,7 @@ export interface PlayerData {
   prospects: MapObject[];
   colonies: MapObject[];
   factories: MapObject[];
+  rocketPosition: string;
 }
 
 export interface PlayerCards {
