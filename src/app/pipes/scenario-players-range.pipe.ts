@@ -1,12 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { ScenarioData } from '../interfaces/scenarios.interface';
+import { Scenario } from '../interfaces/scenarios.interface';
 
 @Pipe({
   name: 'scenarioPlayersRange',
   standalone: true,
 })
 export class ScenarioPlayersRangePipe implements PipeTransform {
-  transform(value: ScenarioData | null | undefined): unknown {
+  transform(value: Scenario | null | undefined): unknown {
     if (!value) {
       return null;
     }

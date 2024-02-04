@@ -1,5 +1,5 @@
-import { PlayerData } from '../interfaces/player.interface';
+import { Player } from '../interfaces/player.interface';
 
-export const getOccupiedGloryChits = (playersData: PlayerData[]) => {
+export const getOccupiedGloryChits = (playersData: Player[]) => {
   return playersData.map((player) => player.gloryChits).flat();
 };

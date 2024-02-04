@@ -1,0 +1,30 @@
+.wrapper {
+  display: flex;
+  min-width: 700px;
+  flex-direction: column;
+}
+
+.description {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.description-date {
+  flex: 1;
+}
+
+.load-btn {
+}
+
+.row-header {
+  position: relative;
+  padding-bottom: 5px;
+}
+
+.progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}

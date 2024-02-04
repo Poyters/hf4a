@@ -1,6 +1,6 @@
-import { ScenarioData } from '../interfaces/scenarios.interface';
+import { Scenario } from '../interfaces/scenarios.interface';
 
-export const scenariosConfig: ScenarioData[] = [
+export const scenariosConfig: Scenario[] = [
   {
     name: 'Quick start',
     players: {

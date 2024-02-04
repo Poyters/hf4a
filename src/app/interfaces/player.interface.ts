@@ -4,7 +4,7 @@ export interface Card {
   name: string;
 }
 
-export interface PlayerData {
+export interface Player {
   playerName: string;
   crewType: string;
   aquas: number;

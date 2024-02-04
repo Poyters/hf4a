@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { scenariosConfig } from '../../../configs/scenarios.config';
-import { ScenarioData } from '../../../interfaces/scenarios.interface';
+import { Scenario } from '../../../interfaces/scenarios.interface';
 import { MatChipsModule } from '@angular/material/chips';
 import { CommonModule } from '@angular/common';
 import {
@@ -28,7 +28,7 @@ export class ScenarioComponent {
     this.scenarioFormGroup = this.rootFormGroup.control;
   }
 
-  selectScenario(scenario: ScenarioData): void {
+  selectScenario(scenario: Scenario): void {
     console.log('scenario', scenario);
     if (
       scenario.name ===

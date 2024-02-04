@@ -1,4 +1,4 @@
-export interface ScenarioData {
+export interface Scenario {
   name: string;
   players: {
     min: number;

@@ -4,12 +4,12 @@ export const crewConfig: Crew[] = [
   {
     name: 'ROSCOSMOS',
     type: 'B',
-    color: 'violet',
+    color: '#6A6A96',
   },
   {
     name: 'Taikonauts',
     type: 'C',
-    color: 'violet',
+    color: '#6A6A96',
   },
   {
     name: 'NASA Astronauts',
@@ -24,41 +24,41 @@ export const crewConfig: Crew[] = [
   {
     name: 'Anonymous P2P',
     type: 'E',
-    color: 'green',
+    color: '#43BABB',
   },
   {
     name: 'ESA Space Unionists',
     type: 'F',
-    color: 'green',
+    color: '#43BABB',
   },
   {
     name: 'NASDRA Astronauts',
     type: 'L',
-    color: 'red',
+    color: '#801E23',
   },
   {
     name: 'Shizmu Corp Entrepreneurs',
     type: 'M',
-    color: 'red',
+    color: '#801E23',
   },
   {
     name: 'B612 Foundation',
     type: 'H',
-    color: 'yellow',
+    color: '#C1A33A',
   },
   {
     name: 'United Nations Cosmonauts',
     type: 'A',
-    color: 'yellow',
+    color: '#C1A33A',
   },
   {
     name: 'Norse Astronauts',
     type: 'K',
-    color: 'gray',
+    color: '#7A838B',
   },
   {
     name: 'SpaceX',
     type: 'J',
-    color: 'gray',
+    color: '#7A838B',
   },
 ];

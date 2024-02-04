@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { scenariosConfig } from '../../configs/scenarios.config';
 import { MatChipsModule } from '@angular/material/chips';
 import { CommonModule } from '@angular/common';
 import {
@@ -18,16 +17,19 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { PlayerDialogComponent } from './player-dialog/player-dialog.component';
-import { PlayerData } from '../../interfaces/player.interface';
+import { Player } from '../../interfaces/player.interface';
 import { PlayerComponent } from './player/player.component';
-import { ScenarioData } from '../../interfaces/scenarios.interface';
+import { Scenario } from '../../interfaces/scenarios.interface';
 import { MatStepperModule } from '@angular/material/stepper';
 import { leftSeniorityDiscsValidator } from '../../validators/leftSeniorityDiscs.validator';
 import { ScenarioComponent } from './scenario/scenario.component';
-import { SaveSheetService } from '../../services/save-sheet.service';
 import { SeniorityDiscsComponent } from './seniority-discs/seniority-discs.component';
 import { MapObject } from '../../interfaces/map.interface';
 import { MapStateComponent } from './map-state/map-state.component';
+import { SaveSheet } from '../../interfaces/saveSheet.interface';
+import localforage from 'localforage';
+import { v4 as uuidv4 } from 'uuid';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-form',
@@ -55,7 +57,7 @@ import { MapStateComponent } from './map-state/map-state.component';
 export class CreateFormComponent {
   scenarioFormGroup = new FormGroup(
     {
-      currentScenario: new FormControl<ScenarioData | null>(
+      currentScenario: new FormControl<Scenario | null>(
         null,
         Validators.required
       ),
@@ -71,7 +73,7 @@ export class CreateFormComponent {
   );
 
   playersFormGroup = new FormGroup({
-    players: new FormControl<PlayerData[]>(
+    players: new FormControl<Player[]>(
       [],
       [Validators.required, this.playersValidator()]
     ),
@@ -85,7 +87,7 @@ export class CreateFormComponent {
   public isLinear = true;
   public canAddMorePlayers = false;
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, private router: Router) {}
 
   ngOnInit(): void {
     this.playersFormGroup.valueChanges.subscribe(() => {
@@ -161,5 +163,39 @@ export class CreateFormComponent {
 
       return null;
     };
+  }
+
+  async save() {
+    console.log('save');
+    const saveSheetData: any = {
+      id: uuidv4(),
+      players: this.playersFormGroup.get('players')?.value,
+      scenario: this.scenarioFormGroup.get('currentScenario')?.value,
+      seniorityDiscs: this.scenarioFormGroup.get('seniorityDiscs')?.value,
+      leftSeniorityDiscs:
+        this.scenarioFormGroup.get('leftSeniorityDiscs')?.value,
+      yearPosition: this.scenarioFormGroup.get('yearPosition')?.value,
+      mapState: { ...this.mapStateFormGroup.value },
+      date: new Date(),
+    };
+
+    console.log('saveSheetData', saveSheetData);
+
+    try {
+      const currentSaveSheets = ((await localforage.getItem('saveSheets')) ??
+        []) as SaveSheet[];
+
+      console.log('currentSaveSheets', currentSaveSheets);
+      await localforage.setItem('saveSheets', [
+        ...currentSaveSheets,
+        saveSheetData,
+      ]);
+
+      console.log('done');
+      this.router.navigate(['']);
+    } catch (err) {
+      // This code runs if there were any errors.
+      console.log(err);
+    }
   }
 }

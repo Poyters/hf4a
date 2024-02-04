@@ -15,7 +15,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { crewConfig } from '../../../configs/crew.config';
-import { PlayerData, Card } from '../../../interfaces/player.interface';
+import { Player, Card } from '../../../interfaces/player.interface';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { getOccupiedCrews } from '../../../utils/crews';
 import { MatDividerModule } from '@angular/material/divider';
@@ -25,7 +25,7 @@ import { MapObject } from '../../../interfaces/map.interface';
 import { MapStateComponent } from './map-state/map-state.component';
 
 export interface PlayerDialogData {
-  players: PlayerData[];
+  players: Player[];
 }
 
 @Component({
@@ -69,7 +69,7 @@ export class PlayerDialogComponent {
     colonies: new FormControl<MapObject[]>([]),
     factories: new FormControl<MapObject[]>([]),
     prospects: new FormControl<MapObject[]>([]),
-    rocketPosition: new FormControl('', Validators.required),
+    rocketPosition: new FormControl(''),
   });
 
   constructor(

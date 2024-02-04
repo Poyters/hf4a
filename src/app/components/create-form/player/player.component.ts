@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { PlayerData } from '../../../interfaces/player.interface';
+import { Player } from '../../../interfaces/player.interface';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { PlayerCardsPipe } from '../../../pipes/player-cards.pipe';
 import { CommonModule } from '@angular/common';
@@ -21,7 +21,7 @@ import { MatDividerModule } from '@angular/material/divider';
   styleUrl: './player.component.scss',
 })
 export class PlayerComponent {
-  @Input() playersData!: PlayerData[];
+  @Input() playersData!: Player[];
 
   public findCrewByType(crewType?: string) {
     if (!crewType) return null;

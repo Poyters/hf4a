@@ -1,0 +1,51 @@
+<mat-accordion class="wrapper">
+  <mat-expansion-panel *ngFor="let saveSheet of saveSheets">
+    <mat-expansion-panel-header class="row-header">
+      <mat-panel-title>
+        {{ saveSheet.scenario.name }}
+      </mat-panel-title>
+      <mat-panel-description class="description">
+        <div class="description-date">
+          {{ saveSheet.date | date : "short" }} Players:
+          {{ saveSheet.players.length }}
+        </div>
+
+        <button
+          mat-raised-button
+          color="primary"
+          class="load-btn"
+          (click)="loadSaveSheet(saveSheet.id)"
+        >
+          Load
+        </button>
+      </mat-panel-description>
+      <mat-progress-bar
+        class="progress"
+        mode="determinate"
+        [value]="calculateProgress(saveSheet)"
+      ></mat-progress-bar>
+    </mat-expansion-panel-header>
+    <mat-divider></mat-divider>
+    <h4>Players</h4>
+    <mat-chip-listbox>
+      <mat-chip-option *ngFor="let player of saveSheet.players">
+        Player {{ player.playerName }}
+      </mat-chip-option>
+    </mat-chip-listbox>
+
+    <mat-divider></mat-divider>
+    <h4>Map state</h4>
+    <mat-chip-listbox>
+      <mat-chip-option>
+        Seniority discs {{ saveSheet?.seniorityDiscs }}
+      </mat-chip-option>
+      <mat-chip-option>
+        Left seniority discs {{ saveSheet?.leftSeniorityDiscs }}
+      </mat-chip-option>
+      <mat-chip-option>
+        Year position {{ saveSheet?.yearPosition }}
+      </mat-chip-option>
+      <mat-divider></mat-divider>
+    </mat-chip-listbox>
+  </mat-expansion-panel>
+</mat-accordion>

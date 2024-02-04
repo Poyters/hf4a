@@ -1,4 +1,4 @@
-import { PlayerData } from '../interfaces/player.interface';
+import { Player } from '../interfaces/player.interface';
 import { crewConfig } from '../configs/crew.config';
 
 /**
@@ -7,7 +7,7 @@ import { crewConfig } from '../configs/crew.config';
  * The function returns each occupied crew, for example, the player has a crew of type B, this means that B and C are occupied (both have the same color).
  * @param players
  */
-export const getOccupiedCrews = (players: PlayerData[]) => {
+export const getOccupiedCrews = (players: Player[]) => {
   const crewTypes = players.map((player) => player.crewType);
   const occupiedColors = getCrewColors(crewTypes);
   const occupiedCrewTypes = getCrewTypesByColors(occupiedColors);
