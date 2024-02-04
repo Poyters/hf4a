@@ -10,6 +10,7 @@ import { DatePipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { crewConfig } from '../../configs/crew.config';
 
 @Component({
   selector: 'app-save-sheets',
@@ -63,5 +64,11 @@ export class SaveSheetsComponent {
     console.log(progress);
 
     return progress;
+  }
+
+  public findCrewByType(crewType?: string) {
+    if (!crewType) return null;
+
+    return crewConfig.find((record) => record.type === crewType) || null;
   }
 }

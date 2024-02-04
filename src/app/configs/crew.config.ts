@@ -14,12 +14,12 @@ export const crewConfig: Crew[] = [
   {
     name: 'NASA Astronauts',
     type: 'D',
-    color: 'white',
+    color: '#C1C5D8',
   },
   {
     name: 'ISRO Glavcosmonauts',
     type: 'G',
-    color: 'white',
+    color: '#C1C5D8',
   },
   {
     name: 'Anonymous P2P',

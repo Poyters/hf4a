@@ -28,8 +28,13 @@
     <mat-divider></mat-divider>
     <h4>Players</h4>
     <mat-chip-listbox>
-      <mat-chip-option *ngFor="let player of saveSheet.players">
-        Player {{ player.playerName }}
+      <mat-chip-option
+        *ngFor="let player of saveSheet.players"
+        [ngStyle]="{
+          'background-color': findCrewByType(player.crewType)?.color
+        }"
+      >
+        {{ player.playerName }}
       </mat-chip-option>
     </mat-chip-listbox>
 
