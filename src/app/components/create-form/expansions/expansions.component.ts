@@ -36,11 +36,24 @@ export class ExpansionsComponent {
   }
 
   selectExpansion(expansion: string): void {
-    if (expansion === this.expansionsFormGroup.get('expansion')?.value) {
-      this.expansionsFormGroup.get('expansion')?.setValue(null);
-      return;
+    this.expansionsFormGroup.get('expansions')?.markAsTouched();
+
+    if (
+      this.expansionsFormGroup.get('expansions')?.value?.includes(expansion)
+    ) {
+      const index =
+        this.expansionsFormGroup.get('expansions')?.value?.indexOf(expansion) ??
+        -1;
+
+      if (index >= 0) {
+        this.expansionsFormGroup.get('expansions')?.value?.splice(index, 1);
+
+        return;
+      }
     }
 
-    this.expansionsFormGroup.get('expansion')?.setValue(expansion);
+    if (this.expansionsFormGroup.get('expansions')?.value) {
+      this.expansionsFormGroup.get('expansions')?.value?.push(expansion);
+    }
   }
 }

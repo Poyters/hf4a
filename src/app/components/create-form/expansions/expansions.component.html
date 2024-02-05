@@ -1,13 +1,13 @@
 <ng-container [formGroup]="expansionsFormGroup">
-  <mat-chip-listbox aria-label="Expansions selection">
+  <mat-chip-listbox aria-label="Expansions selection" multiple>
     <mat-chip-option
       *ngFor="let expansion of expansions"
-      (click)="selectExpansion(expansion)"
+      (click)="selectExpansion(expansion.name)"
       [selected]="
-        expansionsFormGroup.get('expansions')?.value?.includes(expansion)
+        expansionsFormGroup.get('expansions')?.value?.includes(expansion.name)
       "
     >
-      {{ expansion }}
+      {{ expansion.name }}
     </mat-chip-option>
   </mat-chip-listbox>
 </ng-container>
