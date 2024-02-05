@@ -11,6 +11,10 @@
       <mat-chip *ngIf="playerData?.rocketPosition">
         Rocket position: {{ playerData?.rocketPosition }}
       </mat-chip>
+
+      <mat-chip *ngIf="playerData?.fuel">
+        Fuel: {{ playerData?.fuel }}
+      </mat-chip>
     </mat-chip-listbox>
 
     <h4 *ngIf="playerData?.gloryChits?.length">Glory chits</h4>

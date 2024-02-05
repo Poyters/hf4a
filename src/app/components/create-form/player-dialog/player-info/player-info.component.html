@@ -1,0 +1,31 @@
+<ng-container [formGroup]="playerInfoFormGroup">
+  <div class="fields-wrapper">
+    <mat-form-field class="name-field">
+      <mat-label>Player name</mat-label>
+      <input matInput formControlName="playerName" placeholder="Ex. Johny" />
+    </mat-form-field>
+
+    <mat-form-field class="aqua-field">
+      <mat-label>Aqua</mat-label>
+      <input
+        matInput
+        value="0"
+        type="number"
+        formControlName="aquas"
+        min="0"
+        max="50"
+      />
+      @if (playerInfoFormGroup.get('aquas')?.hasError('min')) {
+      <mat-error>
+        Min
+        {{ playerInfoFormGroup.get("aquas")?.getError("min").min }}</mat-error
+      >
+      } @if (playerInfoFormGroup.get('aquas')?.hasError('max')) {
+      <mat-error>
+        Max
+        {{ playerInfoFormGroup.get("aquas")?.getError("max").max }}</mat-error
+      >
+      }
+    </mat-form-field>
+  </div></ng-container
+>

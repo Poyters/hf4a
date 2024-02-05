@@ -23,6 +23,8 @@ import { GloryChitsComponent } from './glory-chits/glory-chits.component';
 import { getOccupiedGloryChits } from '../../../utils/gloryChits';
 import { MapObject } from '../../../interfaces/map.interface';
 import { MapStateComponent } from './map-state/map-state.component';
+import { RocketStateComponent } from './rocket-state/rocket-state.component';
+import { PlayerInfoComponent } from './player-info/player-info.component';
 
 export interface PlayerDialogData {
   players: Player[];
@@ -45,6 +47,8 @@ export interface PlayerDialogData {
     MatDividerModule,
     GloryChitsComponent,
     MapStateComponent,
+    RocketStateComponent,
+    PlayerInfoComponent,
   ],
   templateUrl: './player-dialog.component.html',
   styleUrl: './player-dialog.component.scss',
@@ -70,6 +74,7 @@ export class PlayerDialogComponent {
     factories: new FormControl<MapObject[]>([]),
     prospects: new FormControl<MapObject[]>([]),
     rocketPosition: new FormControl(''),
+    fuel: new FormControl<number>(0, [Validators.min(0), Validators.max(32)]),
   });
 
   constructor(

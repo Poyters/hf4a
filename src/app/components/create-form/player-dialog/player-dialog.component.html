@@ -22,46 +22,8 @@
         [occupiedGloryChits]="occuppiedGloryChits"
       ></app-glory-chits>
 
-      <div class="base-fields">
-        <mat-form-field class="player-field">
-          <mat-label>Player name</mat-label>
-          <input
-            matInput
-            formControlName="playerName"
-            placeholder="Ex. Johny"
-          />
-        </mat-form-field>
-
-        <mat-form-field class="rocket-field">
-          <mat-label>Rocket position</mat-label>
-          <input
-            matInput
-            formControlName="rocketPosition"
-            placeholder="Ex. Hermes, second burn"
-          />
-        </mat-form-field>
-
-        <mat-form-field class="aqua-field">
-          <mat-label>Aqua</mat-label>
-          <input
-            matInput
-            value="0"
-            type="number"
-            formControlName="aquas"
-            min="0"
-            max="50"
-          />
-          @if (playerForm.get('aquas')?.hasError('min')) {
-          <mat-error>
-            Min {{ playerForm.get("aquas")?.getError("min").min }}</mat-error
-          >
-          } @if (playerForm.get('aquas')?.hasError('max')) {
-          <mat-error>
-            Max {{ playerForm.get("aquas")?.getError("max").max }}</mat-error
-          >
-          }
-        </mat-form-field>
-      </div>
+      <app-player-info></app-player-info>
+      <app-rocket-state></app-rocket-state>
 
       <mat-divider></mat-divider>
       <h2>Map state</h2>

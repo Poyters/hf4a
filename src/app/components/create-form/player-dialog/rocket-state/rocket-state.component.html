@@ -1,0 +1,35 @@
+<ng-container [formGroup]="rocketStateFormGroup">
+  <div class="fields-wrapper">
+    <mat-form-field class="rocket-field">
+      <mat-label>Rocket position</mat-label>
+      <input
+        matInput
+        formControlName="rocketPosition"
+        placeholder="Ex. Hermes, second burn"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="fuel-field">
+      <mat-label matTooltip="Position of the wet mass chit">Fuel</mat-label>
+      <input
+        matInput
+        value="0"
+        type="number"
+        formControlName="fuel"
+        min="0"
+        max="32"
+      />
+      @if (rocketStateFormGroup.get('fuel')?.hasError('min')) {
+      <mat-error>
+        Min
+        {{ rocketStateFormGroup.get("fuel")?.getError("min").min }}</mat-error
+      >
+      } @if (rocketStateFormGroup.get('fuel')?.hasError('max')) {
+      <mat-error>
+        Max
+        {{ rocketStateFormGroup.get("fuel")?.getError("max").max }}</mat-error
+      >
+      }
+    </mat-form-field>
+  </div></ng-container
+>

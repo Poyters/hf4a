@@ -14,6 +14,7 @@ export interface Player {
   colonies: MapObject[];
   factories: MapObject[];
   rocketPosition: string;
+  fuel: number;
 }
 
 export interface PlayerCards {
