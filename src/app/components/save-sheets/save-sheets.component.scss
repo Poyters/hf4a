@@ -1,7 +1,6 @@
 .wrapper {
-  display: flex;
-  min-width: 700px;
-  flex-direction: column;
+  width: 720px;
+  margin-top: 50px;
 }
 
 .description {
@@ -14,7 +13,8 @@
   flex: 1;
 }
 
-.load-btn {
+.new-save-btn {
+  margin: 20px 0;
 }
 
 .row-header {
@@ -27,4 +27,15 @@
   bottom: 0;
   left: 0;
   width: 100%;
+}
+
+.no-saves {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.save-info {
+  text-align: center;
+  width: 300px;
 }

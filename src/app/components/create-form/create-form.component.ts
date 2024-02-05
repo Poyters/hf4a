@@ -18,7 +18,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { PlayerDialogComponent } from './player-dialog/player-dialog.component';
 import { Player } from '../../interfaces/player.interface';
-import { PlayerComponent } from './player/player.component';
+import { PlayerComponent } from '../player/player.component';
 import { Scenario } from '../../interfaces/scenarios.interface';
 import { MatStepperModule } from '@angular/material/stepper';
 import { leftSeniorityDiscsValidator } from '../../validators/leftSeniorityDiscs.validator';

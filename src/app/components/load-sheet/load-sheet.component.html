@@ -1,43 +1,67 @@
-<mat-card class="wrapper">
+<mat-card class="wrapper" *ngIf="saveSheet">
   <mat-card-content>
     <mat-vertical-stepper [linear]="true" #stepper>
       <mat-step>
-        <ng-template matStepLabel>Game</ng-template>
-        <ol>
-          <li>Set left discs at {{ saveSheet?.leftSeniorityDiscs }}</li>
-          <li>Year position at {{ saveSheet?.yearPosition }}</li>
-        </ol>
-        <div>
-          <button mat-button matStepperNext>Next</button>
+        <ng-template matStepLabel>Sol Support Cycle</ng-template>
+        <mat-chip-listbox aria-label="Glory chit selection">
+          <mat-chip>
+            Left seniority discs {{ saveSheet.leftSeniorityDiscs }}
+          </mat-chip>
+          <mat-chip> Year position {{ saveSheet.yearPosition }} </mat-chip>
+        </mat-chip-listbox>
+
+        <div class="buttons-wrapper">
+          <button mat-raised-button color="primary" matStepperNext>Next</button>
         </div>
       </mat-step>
-      <mat-step>
-        <ng-template matStepLabel>Map</ng-template>
-        <ol>
-          <li>
-            Put busted discs at {{ saveSheet?.mapState?.bustedDiscs | json }}
-          </li>
-          <li>Year position at {{ saveSheet?.mapState?.bridges | json }}</li>
-        </ol>
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
+      <mat-step *ngIf="saveSheet.mapState.bustedDiscs.length">
+        <ng-template matStepLabel>Busted discs</ng-template>
+        <mat-chip-listbox>
+          <mat-chip *ngFor="let bustedDisc of saveSheet.mapState.bustedDiscs">
+            {{ bustedDisc.name }}
+          </mat-chip>
+        </mat-chip-listbox>
+
+        <div class="buttons-wrapper">
+          <button mat-raised-button matStepperPrevious>Back</button>
+          <button mat-raised-button color="primary" matStepperNext>Next</button>
+        </div>
+      </mat-step>
+      <mat-step *ngIf="saveSheet.mapState.bridges.length">
+        <ng-template matStepLabel>Bridges</ng-template>
+
+        <mat-chip-listbox>
+          <mat-chip *ngFor="let bridge of saveSheet.mapState.bridges">
+            {{ bridge.name }}
+          </mat-chip>
+        </mat-chip-listbox>
+
+        <div class="buttons-wrapper">
+          <button mat-raised-button matStepperPrevious>Back</button>
+          <button mat-raised-button color="primary" matStepperNext>Next</button>
         </div>
       </mat-step>
       <mat-step>
         <ng-template matStepLabel>Players</ng-template>
-        set up players
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
+        <app-player [playersData]="saveSheet.players"></app-player>
+        <div class="buttons-wrapper">
+          <button mat-raised-button matStepperPrevious>Back</button>
+          <button mat-raised-button color="primary" matStepperNext>Next</button>
         </div>
       </mat-step>
       <mat-step>
         <ng-template matStepLabel>Done</ng-template>
         You are now done.
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button (click)="stepper.reset()">Let's play!</button>
+        <div class="buttons-wrapper">
+          <button mat-raised-button matStepperPrevious>Back</button>
+          <button
+            mat-raised-button
+            color="primary"
+            matStepperNext
+            (click)="redirectToHome()"
+          >
+            Play
+          </button>
         </div>
       </mat-step>
     </mat-vertical-stepper>

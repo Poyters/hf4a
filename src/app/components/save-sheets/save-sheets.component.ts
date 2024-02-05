@@ -11,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { crewConfig } from '../../configs/crew.config';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-save-sheets',
@@ -24,6 +25,7 @@ import { crewConfig } from '../../configs/crew.config';
     DatePipe,
     MatButtonModule,
     MatProgressBarModule,
+    MatCardModule,
   ],
   templateUrl: './save-sheets.component.html',
   styleUrl: './save-sheets.component.scss',
@@ -70,5 +72,10 @@ export class SaveSheetsComponent {
     if (!crewType) return null;
 
     return crewConfig.find((record) => record.type === crewType) || null;
+  }
+
+  redirectToNewSave() {
+    console.log('here');
+    this.router.navigate(['/new']);
   }
 }

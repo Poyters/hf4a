@@ -1,58 +1,91 @@
-<mat-accordion class="wrapper">
-  <mat-expansion-panel *ngFor="let saveSheet of saveSheets">
-    <mat-expansion-panel-header class="row-header">
-      <mat-panel-title>
-        {{ saveSheet.scenario.name }}
-      </mat-panel-title>
-      <mat-panel-description class="description">
-        <div class="description-date">
-          {{ saveSheet.date | date : "short" }} Players:
-          {{ saveSheet.players.length }}
-        </div>
+<mat-card class="wrapper">
+  <mat-card-content>
+    <div *ngIf="!saveSheets.length" class="no-saves">
+      <h2>No saved games!</h2>
+      <p>You have no saved game.</p>
 
-        <button
-          mat-raised-button
-          color="primary"
-          class="load-btn"
-          (click)="loadSaveSheet(saveSheet.id)"
-        >
-          Load
-        </button>
-      </mat-panel-description>
-      <mat-progress-bar
-        class="progress"
-        mode="determinate"
-        [value]="calculateProgress(saveSheet)"
-      ></mat-progress-bar>
-    </mat-expansion-panel-header>
-    <div class="expanded-wrapper">
-      <mat-divider></mat-divider>
-      <h4>Players</h4>
-      <mat-chip-listbox>
-        <mat-chip-option
-          *ngFor="let player of saveSheet.players"
-          [ngStyle]="{
-            'background-color': findCrewByType(player.crewType)?.color
-          }"
-        >
-          {{ player.playerName }}
-        </mat-chip-option>
-      </mat-chip-listbox>
+      <button
+        mat-raised-button
+        color="primary"
+        class="new-save-btn"
+        matStepperNext
+        (click)="redirectToNewSave()"
+      >
+        Save new game
+      </button>
 
-      <mat-divider></mat-divider>
-      <h4>Map state</h4>
-      <mat-chip-listbox>
-        <mat-chip-option>
-          Seniority discs {{ saveSheet?.seniorityDiscs }}
-        </mat-chip-option>
-        <mat-chip-option>
-          Left seniority discs {{ saveSheet?.leftSeniorityDiscs }}
-        </mat-chip-option>
-        <mat-chip-option>
-          Year position {{ saveSheet?.yearPosition }}
-        </mat-chip-option>
-        <mat-divider></mat-divider>
-      </mat-chip-listbox>
+      <p class="mat-caption save-info">
+        Game progress is saved in your browser's memory, enabling you to resume
+        play on the same computer where you left off.
+      </p>
     </div>
-  </mat-expansion-panel>
-</mat-accordion>
+    <h2 *ngIf="saveSheets.length">Saved games</h2>
+    <mat-accordion class="wrapper">
+      <mat-expansion-panel *ngFor="let saveSheet of saveSheets">
+        <mat-expansion-panel-header class="row-header">
+          <mat-panel-title>
+            {{ saveSheet.scenario.name }}
+          </mat-panel-title>
+          <mat-panel-description class="description">
+            <div class="description-date">
+              {{ saveSheet.date | date : "short" }} Players:
+              {{ saveSheet.players.length }}
+            </div>
+
+            <button
+              mat-raised-button
+              color="primary"
+              class="load-btn"
+              (click)="loadSaveSheet(saveSheet.id)"
+            >
+              Load
+            </button>
+          </mat-panel-description>
+          <mat-progress-bar
+            class="progress"
+            mode="determinate"
+            [value]="calculateProgress(saveSheet)"
+          ></mat-progress-bar>
+        </mat-expansion-panel-header>
+        <div class="expanded-wrapper">
+          <mat-divider></mat-divider>
+          <h4>Players</h4>
+          <mat-chip-listbox>
+            <mat-chip
+              *ngFor="let player of saveSheet.players"
+              [ngStyle]="{
+                'background-color': findCrewByType(player.crewType)?.color
+              }"
+            >
+              {{ player.playerName }}
+            </mat-chip>
+          </mat-chip-listbox>
+
+          <mat-divider></mat-divider>
+          <h4>Map state</h4>
+          <mat-chip-listbox>
+            <mat-chip>
+              Seniority discs {{ saveSheet?.seniorityDiscs }}
+            </mat-chip>
+            <mat-chip>
+              Left seniority discs {{ saveSheet?.leftSeniorityDiscs }}
+            </mat-chip>
+            <mat-chip> Year position {{ saveSheet?.yearPosition }} </mat-chip>
+            <mat-divider></mat-divider>
+          </mat-chip-listbox>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <button
+      *ngIf="saveSheets?.length"
+      mat-raised-button
+      color="primary"
+      class="new-save-btn"
+      matStepperNext
+      (click)="redirectToNewSave()"
+    >
+      Save new game
+    </button>
+  </mat-card-content>
+</mat-card>

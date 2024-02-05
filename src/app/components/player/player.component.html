@@ -6,30 +6,42 @@
         {{ findCrewByType(playerData?.crewType)?.name }}
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <p>Aqua: {{ playerData?.aquas }}</p>
-    <p>Rocket position: {{ playerData?.rocketPosition }}</p>
+    <mat-chip-listbox aria-label="Glory chit selection">
+      <mat-chip> Aqua: {{ playerData?.aquas }} </mat-chip>
+      <mat-chip *ngIf="playerData?.rocketPosition">
+        Rocket position: {{ playerData?.rocketPosition }}
+      </mat-chip>
+    </mat-chip-listbox>
 
     <h4 *ngIf="playerData?.gloryChits?.length">Glory chits</h4>
     <mat-chip-listbox
       aria-label="Glory chit selection"
       *ngIf="playerData?.gloryChits?.length"
     >
-      <mat-chip-option *ngFor="let gloryChit of playerData.gloryChits">
+      <mat-chip *ngFor="let gloryChit of playerData.gloryChits">
         {{ gloryChit }}
-      </mat-chip-option>
+      </mat-chip>
     </mat-chip-listbox>
 
-    <mat-divider></mat-divider>
-    <h2>Map state</h2>
+    <ng-container
+      *ngIf="
+        playerData?.prospects?.length ||
+        playerData?.factories?.length ||
+        playerData?.colonies?.length
+      "
+    >
+      <mat-divider></mat-divider>
+      <h2>Map state</h2>
+    </ng-container>
 
     <h4 *ngIf="playerData?.prospects?.length">Prospects</h4>
     <mat-chip-listbox
       aria-label="Glory chit selection"
       *ngIf="playerData?.prospects?.length"
     >
-      <mat-chip-option *ngFor="let prospect of playerData?.prospects">
+      <mat-chip *ngFor="let prospect of playerData?.prospects">
         {{ prospect.name }}
-      </mat-chip-option>
+      </mat-chip>
     </mat-chip-listbox>
 
     <h4 *ngIf="playerData?.factories?.length">Factories</h4>
@@ -37,9 +49,9 @@
       aria-label="Glory chit selection"
       *ngIf="playerData?.factories?.length"
     >
-      <mat-chip-option *ngFor="let factory of playerData?.factories">
+      <mat-chip *ngFor="let factory of playerData?.factories">
         {{ factory.name }}
-      </mat-chip-option>
+      </mat-chip>
     </mat-chip-listbox>
 
     <h4 *ngIf="playerData?.colonies?.length">Colonies</h4>
@@ -47,22 +59,24 @@
       aria-label="Glory chit selection"
       *ngIf="playerData?.colonies?.length"
     >
-      <mat-chip-option *ngFor="let colony of playerData?.colonies">
+      <mat-chip *ngFor="let colony of playerData?.colonies">
         {{ colony.name }}
-      </mat-chip-option>
+      </mat-chip>
     </mat-chip-listbox>
 
-    <mat-divider></mat-divider>
-    <h2>Cards</h2>
+    <ng-container *ngIf="hasAnyCards(playerData)">
+      <mat-divider></mat-divider>
+      <h2>Cards</h2>
+    </ng-container>
 
     <h4 *ngIf="playerData?.cards?.rocket?.length">Rocket</h4>
     <mat-chip-listbox
       aria-label="Glory chit selection"
       *ngIf="playerData?.cards?.rocket?.length"
     >
-      <mat-chip-option *ngFor="let card of playerData?.cards?.rocket">
+      <mat-chip *ngFor="let card of playerData?.cards?.rocket">
         {{ card.name }}
-      </mat-chip-option>
+      </mat-chip>
     </mat-chip-listbox>
 
     <h4 *ngIf="playerData?.cards?.leo?.length">LEO</h4>
@@ -70,9 +84,9 @@
       aria-label="Glory chit selection"
       *ngIf="playerData?.cards?.leo?.length"
     >
-      <mat-chip-option *ngFor="let card of playerData?.cards?.leo">
+      <mat-chip *ngFor="let card of playerData?.cards?.leo">
         {{ card.name }}
-      </mat-chip-option>
+      </mat-chip>
     </mat-chip-listbox>
 
     <h4 *ngIf="playerData?.cards?.outpost1?.length">Outpost 1</h4>
@@ -80,9 +94,9 @@
       aria-label="Glory chit selection"
       *ngIf="playerData?.cards?.outpost1?.length"
     >
-      <mat-chip-option *ngFor="let card of playerData?.cards?.outpost1">
+      <mat-chip *ngFor="let card of playerData?.cards?.outpost1">
         {{ card.name }}
-      </mat-chip-option>
+      </mat-chip>
     </mat-chip-listbox>
 
     <h4 *ngIf="playerData?.cards?.outpost2?.length">Outpost 2</h4>
@@ -90,9 +104,9 @@
       aria-label="Glory chit selection"
       *ngIf="playerData?.cards?.outpost2?.length"
     >
-      <mat-chip-option *ngFor="let card of playerData?.cards?.outpost2">
+      <mat-chip *ngFor="let card of playerData?.cards?.outpost2">
         {{ card.name }}
-      </mat-chip-option>
+      </mat-chip>
     </mat-chip-listbox>
 
     <h4 *ngIf="playerData?.cards?.hand?.length">Hand</h4>
@@ -100,9 +114,9 @@
       aria-label="Glory chit selection"
       *ngIf="playerData?.cards?.hand?.length"
     >
-      <mat-chip-option *ngFor="let card of playerData?.cards?.hand">
+      <mat-chip *ngFor="let card of playerData?.cards?.hand">
         {{ card.name }}
-      </mat-chip-option>
+      </mat-chip>
     </mat-chip-listbox>
   </mat-expansion-panel>
 </mat-accordion>
