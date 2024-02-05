@@ -2,8 +2,8 @@
   <h2 mat-dialog-title>Player {{ playerForm.get("playerName")?.value }}</h2>
   <mat-dialog-content class="mat-typography">
     <form [formGroup]="playerForm">
-      <h4>Crew type</h4>
-      <mat-chip-listbox aria-label="Crew selection">
+      <h4>Crew type*</h4>
+      <mat-chip-listbox aria-label="Crew selection" required>
         <mat-chip-option
           *ngFor="let crew of crews"
           (click)="selectCrew(crew.type)"
@@ -15,7 +15,7 @@
       @if (playerForm.get('crewType')?.hasError('required') &&
       (playerForm.get('crewType')?.dirty || playerForm.get('crewType')?.touched)
       ) {
-      <mat-error> Req field</mat-error>
+      <mat-error class="crew-error"> Required field</mat-error>
       }
 
       <app-glory-chits
