@@ -4,6 +4,10 @@
 
 .navbar {
   align-items: center;
+
+  @media (max-width: 720px) {
+    align-items: normal;
+  }
 }
 
 .row {
@@ -12,5 +16,6 @@
 
   @media (max-width: 720px) {
     width: auto;
+    padding: 0 10px;
   }
 }
