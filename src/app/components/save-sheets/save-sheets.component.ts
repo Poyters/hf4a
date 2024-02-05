@@ -56,14 +56,11 @@ export class SaveSheetsComponent {
   }
 
   public calculateProgress(saveSheet: SaveSheet) {
-    console.log('saveSheet', saveSheet);
     const fullYears = saveSheet.seniorityDiscs * 12;
     const leftYears =
       saveSheet.leftSeniorityDiscs * 12 - saveSheet.yearPosition;
 
-    const progress = Math.floor((leftYears / fullYears) * 100);
-
-    console.log(progress);
+    const progress = Math.floor(100 - (leftYears / fullYears) * 100);
 
     return progress;
   }
@@ -75,7 +72,6 @@ export class SaveSheetsComponent {
   }
 
   redirectToNewSave() {
-    console.log('here');
     this.router.navigate(['/new']);
   }
 }

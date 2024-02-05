@@ -80,12 +80,6 @@ export class PlayerDialogComponent {
     this.occuppiedGloryChits = getOccupiedGloryChits(this.data.players);
   }
 
-  ngOnInit(): void {
-    this.playerForm.valueChanges.subscribe(() => {
-      console.log('player form', this.playerForm.get('gloryChits'));
-    });
-  }
-
   selectCrew(crewType: string): void {
     this.playerForm.get('crewType')?.markAsTouched();
 

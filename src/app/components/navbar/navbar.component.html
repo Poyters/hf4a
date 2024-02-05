@@ -1,20 +1,22 @@
-<mat-toolbar>
-  <mat-toolbar-row>
+<mat-toolbar class="navbar">
+  <mat-toolbar-row class="row">
     <span>HF 4All - Save sheets</span>
     <span class="example-spacer"></span>
     <button
       mat-icon-button
-      class="example-icon favorite-icon"
-      aria-label="Example icon-button with heart icon"
+      aria-label="New"
+      color="primary"
+      (click)="redirectToNewSave()"
     >
-      <mat-icon>favorite</mat-icon>
+      <mat-icon>add</mat-icon>
     </button>
     <button
       mat-icon-button
-      class="example-icon"
-      aria-label="Example icon-button with share icon"
+      aria-label="Home"
+      color="primary"
+      (click)="redirectToHome()"
     >
-      <mat-icon>share</mat-icon>
+      <mat-icon>home</mat-icon>
     </button>
   </mat-toolbar-row>
 </mat-toolbar>

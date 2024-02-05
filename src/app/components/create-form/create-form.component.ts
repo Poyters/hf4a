@@ -89,34 +89,6 @@ export class CreateFormComponent {
 
   constructor(public dialog: MatDialog, private router: Router) {}
 
-  ngOnInit(): void {
-    this.playersFormGroup.valueChanges.subscribe(() => {
-      this.canAddMorePlayers =
-        (this.scenarioFormGroup.get('currentScenario')?.value?.players?.max ??
-          0) > (this.playersFormGroup.get('players')?.value?.length ?? 0);
-
-      console.log(
-        'canAddMorePlayers A',
-        this.canAddMorePlayers,
-        this.scenarioFormGroup.get('currentScenario')?.value?.players?.max,
-        this.playersFormGroup.get('players')?.value?.length
-      );
-    });
-
-    this.scenarioFormGroup.valueChanges.subscribe(() => {
-      this.canAddMorePlayers =
-        (this.scenarioFormGroup.get('currentScenario')?.value?.players?.max ??
-          0) > (this.playersFormGroup.get('players')?.value?.length ?? 0);
-
-      console.log(
-        'canAddMorePlayers B',
-        this.canAddMorePlayers,
-        this.scenarioFormGroup.get('currentScenario')?.value?.players?.max,
-        this.playersFormGroup.get('players')?.value?.length
-      );
-    });
-  }
-
   openPlayerDialog() {
     const dialogRef = this.dialog.open(PlayerDialogComponent, {
       data: {
@@ -124,7 +96,7 @@ export class CreateFormComponent {
         cards: {},
         players: this.playersFormGroup.get('players')?.value,
       },
-      minWidth: '500px',
+      minWidth: '375px',
     });
 
     dialogRef.afterClosed().subscribe((result) => {
@@ -166,7 +138,6 @@ export class CreateFormComponent {
   }
 
   async save() {
-    console.log('save');
     const saveSheetData: any = {
       id: uuidv4(),
       players: this.playersFormGroup.get('players')?.value,
@@ -179,19 +150,15 @@ export class CreateFormComponent {
       date: new Date(),
     };
 
-    console.log('saveSheetData', saveSheetData);
-
     try {
       const currentSaveSheets = ((await localforage.getItem('saveSheets')) ??
         []) as SaveSheet[];
 
-      console.log('currentSaveSheets', currentSaveSheets);
       await localforage.setItem('saveSheets', [
         ...currentSaveSheets,
         saveSheetData,
       ]);
 
-      console.log('done');
       this.router.navigate(['']);
     } catch (err) {
       // This code runs if there were any errors.

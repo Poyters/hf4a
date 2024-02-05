@@ -11,8 +11,6 @@ export function arrayLengthValidator(
   const min = options.min ?? 0;
   const max = options.max ?? Number.MAX_SAFE_INTEGER;
 
-  console.log('min', min);
-
   return (control: AbstractControl): ValidationErrors | null => {
     const arrayValue = control.value as any[]; // Zakładam, że kontrolka zawiera tablicę
 

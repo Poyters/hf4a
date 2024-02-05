@@ -35,38 +35,23 @@ export class GloryChitsComponent {
 
   ngOnInit(): void {
     this.playerFormGroup = this.rootFormGroup.control;
-
-    console.log('occuppiedGloryChits', this.occupiedGloryChits);
   }
 
   selectGloryChit(gloryChit: string): void {
-    console.log('gloryChit', gloryChit);
     this.playerFormGroup.get('gloryChits')?.markAsTouched();
 
     if (this.playerFormGroup.get('gloryChits')?.value?.includes(gloryChit)) {
-      console.log('includes');
-
       const index =
         this.playerFormGroup.get('gloryChits')?.value?.indexOf(gloryChit) ?? -1;
 
-      console.log('index', index);
-
       if (index >= 0) {
-        console.log('here');
         this.playerFormGroup.get('gloryChits')?.value?.splice(index, 1);
 
-        console.log(
-          "this.playerForm.get('gloryChits')?.value",
-          this.playerFormGroup.get('gloryChits')?.value
-        );
-
-        console.log('removed ghlory chit stop');
         return;
       }
     }
 
     if (this.playerFormGroup.get('gloryChits')?.value) {
-      console.log('adding glory chit', gloryChit);
       this.playerFormGroup.get('gloryChits')?.value?.push(gloryChit);
     }
   }

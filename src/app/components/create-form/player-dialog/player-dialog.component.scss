@@ -12,10 +12,15 @@
   flex-wrap: nowrap;
   gap: 20px;
   margin-top: 15px;
+
+  @media (max-width: 720px) {
+    gap: 3px;
+    flex-wrap: wrap;
+  }
 }
 
 .player-field {
-  width: 200px;
+  width: 135px;
 }
 
 .rocket-field {
@@ -23,7 +28,7 @@
 }
 
 .aqua-field {
-  width: 80px;
+  width: 60px;
 }
 
 .chip-list {

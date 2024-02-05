@@ -29,7 +29,6 @@ export class ScenarioComponent {
   }
 
   selectScenario(scenario: Scenario): void {
-    console.log('scenario', scenario);
     if (
       scenario.name ===
       this.scenarioFormGroup.get('currentScenario')?.value?.name
