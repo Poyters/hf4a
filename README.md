@@ -18,9 +18,10 @@ I tried to make the save process as fast as possible. As a result, saving sessio
 ## TODO
 
 - [ ] Support polish language
-- [ ] Rocket positiion
+- [ ] Responsive design for mobile devices
 - [ ] Rocket fuel
+- [ ] Heromis chits
 
 ## Found an issue?
 
-Just send me an e-mail explaining the problem, I will try to fix it as soon as possible.
+Just send me an e-mail _(business@poyters.pl)_ explaining the problem, I will try to fix it as soon as possible.
