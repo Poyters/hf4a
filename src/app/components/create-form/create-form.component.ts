@@ -89,6 +89,19 @@ export class CreateFormComponent {
 
   constructor(public dialog: MatDialog, private router: Router) {}
 
+  ngOnInit(): void {
+    this.playersFormGroup.valueChanges.subscribe(() => {
+      this.canAddMorePlayers =
+        (this.scenarioFormGroup.get('currentScenario')?.value?.players?.max ??
+          0) > (this.playersFormGroup.get('players')?.value?.length ?? 0);
+    });
+    this.scenarioFormGroup.valueChanges.subscribe(() => {
+      this.canAddMorePlayers =
+        (this.scenarioFormGroup.get('currentScenario')?.value?.players?.max ??
+          0) > (this.playersFormGroup.get('players')?.value?.length ?? 0);
+    });
+  }
+
   openPlayerDialog() {
     const dialogRef = this.dialog.open(PlayerDialogComponent, {
       data: {

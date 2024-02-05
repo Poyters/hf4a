@@ -20,7 +20,7 @@ I tried to make the save process as fast as possible. As a result, saving sessio
 - [ ] Support polish language
 - [x] Responsive design for mobile devices
 - [ ] Rocket fuel
-- [ ] Heromis chits
+- [ ] Heroism chits
 
 ## Found an issue?
 
