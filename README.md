@@ -18,7 +18,7 @@ I tried to make the save process as fast as possible. As a result, saving sessio
 ## TODO
 
 - [ ] Support polish language
-- [ ] Responsive design for mobile devices
+- [x] Responsive design for mobile devices
 - [ ] Rocket fuel
 - [ ] Heromis chits
 

@@ -4,6 +4,8 @@
   flex-wrap: nowrap;
   gap: 20px;
   margin-top: 20px;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .seniority-wrapper {
@@ -16,4 +18,9 @@
 
 .disc-field {
   flex: 1;
+
+  @media (max-width: 720px) {
+    flex: auto;
+    width: 120px;
+  }
 }

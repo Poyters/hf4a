@@ -1,6 +1,10 @@
 .wrapper {
   width: 720px;
   margin-top: 50px;
+
+  @media (max-width: 720px) {
+    width: auto;
+  }
 }
 
 .description {
