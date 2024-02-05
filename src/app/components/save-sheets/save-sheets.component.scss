@@ -1,8 +1,10 @@
+@import "../../styles/variables";
+
 .wrapper {
-  width: 720px;
+  width: $smallScreenMax;
   margin-top: 50px;
 
-  @media (max-width: 720px) {
+  @media (max-width: $smallScreenMax) {
     width: auto;
   }
 }
