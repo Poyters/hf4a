@@ -31,6 +31,7 @@ import localforage from 'localforage';
 import { v4 as uuidv4 } from 'uuid';
 import { Router } from '@angular/router';
 import { ExpansionsComponent } from './expansions/expansions.component';
+import { Module0Component } from './module-0/module-0.component';
 
 @Component({
   selector: 'app-create-form',
@@ -52,6 +53,7 @@ import { ExpansionsComponent } from './expansions/expansions.component';
     SeniorityDiscsComponent,
     MapStateComponent,
     ExpansionsComponent,
+    Module0Component,
   ],
   templateUrl: './create-form.component.html',
   styleUrl: './create-form.component.scss',

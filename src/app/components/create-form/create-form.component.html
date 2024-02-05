@@ -109,6 +109,19 @@
         </form>
       </mat-step>
 
+      <mat-step
+        *ngIf="
+          expansionsFormGroup.get('expansions')?.value?.includes('Module 0')
+        "
+      >
+        <ng-template matStepLabel>Politics</ng-template>
+
+        <div class="buttons-wrapper">
+          <button mat-raised-button matStepperPrevious>Back</button>
+          <button mat-raised-button color="primary" matStepperNext>Next</button>
+        </div>
+      </mat-step>
+
       <mat-step>
         <ng-template matStepLabel>Done</ng-template>
         <p>You are now done.</p>
