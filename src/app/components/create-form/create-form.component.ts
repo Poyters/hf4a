@@ -30,6 +30,7 @@ import { SaveSheet } from '../../interfaces/saveSheet.interface';
 import localforage from 'localforage';
 import { v4 as uuidv4 } from 'uuid';
 import { Router } from '@angular/router';
+import { ExpansionsComponent } from './expansions/expansions.component';
 
 @Component({
   selector: 'app-create-form',
@@ -50,6 +51,7 @@ import { Router } from '@angular/router';
     ScenarioComponent,
     SeniorityDiscsComponent,
     MapStateComponent,
+    ExpansionsComponent,
   ],
   templateUrl: './create-form.component.html',
   styleUrl: './create-form.component.scss',
@@ -71,6 +73,10 @@ export class CreateFormComponent {
     },
     { validators: leftSeniorityDiscsValidator }
   );
+
+  expansionsFormGroup = new FormGroup({
+    expansions: new FormControl<string[]>([]),
+  });
 
   playersFormGroup = new FormGroup({
     players: new FormControl<Player[]>(

@@ -12,8 +12,6 @@ I tried to make the save process as fast as possible. As a result, saving sessio
 - [ ] Module 1
 - [ ] Module 2
 - [ ] Module 3
-- [ ] Module 4
-- [ ] Module 5
 
 ## TODO
 
@@ -21,6 +19,9 @@ I tried to make the save process as fast as possible. As a result, saving sessio
 - [x] Responsive design for mobile devices
 - [x] Rocket fuel
 - [ ] Heroism chits
+- [ ] Delete save sheet
+- [ ] Edit save sheet
+- [ ] Import/export save sheet using JSON or allow users to create an account
 
 ## Found an issue?
 

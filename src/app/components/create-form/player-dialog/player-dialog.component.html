@@ -2,7 +2,7 @@
   <h2 mat-dialog-title>Player {{ playerForm.get("playerName")?.value }}</h2>
   <mat-dialog-content class="mat-typography">
     <form [formGroup]="playerForm">
-      <h4>Crew type*</h4>
+      <h4>Crew*</h4>
       <mat-chip-listbox aria-label="Crew selection" required>
         <mat-chip-option
           *ngFor="let crew of crews"

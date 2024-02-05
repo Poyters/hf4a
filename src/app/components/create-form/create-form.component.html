@@ -21,6 +21,25 @@
         </form>
       </mat-step>
 
+      <mat-step [stepControl]="expansionsFormGroup">
+        <form [formGroup]="expansionsFormGroup">
+          <ng-template matStepLabel>Expansions</ng-template>
+
+          <app-expansions></app-expansions>
+
+          <div class="buttons-wrapper">
+            <button
+              mat-raised-button
+              color="primary"
+              matStepperNext
+              [disabled]="!expansionsFormGroup.valid"
+            >
+              Next
+            </button>
+          </div>
+        </form>
+      </mat-step>
+
       <mat-step [stepControl]="playersFormGroup">
         <form [formGroup]="playersFormGroup" class="form-wrapper">
           <ng-template matStepLabel
