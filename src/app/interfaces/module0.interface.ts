@@ -5,10 +5,5 @@ export interface PoliticalAssembly {
 export interface Assembly {
   name: string; //Honor
   seniorityDiscs: number;
-  delegates: PlayerDelegate[];
-}
-
-export interface PlayerDelegate {
-  playerName: string;
-  quantity: number;
+  delegates: string;
 }

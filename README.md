@@ -2,7 +2,7 @@
 
 I'm a board gamer too, and I know how frustrating it can be to not have enough time to play your favorite game. That's why I came up with the idea to create online signups for the High Frontier 4 All board game.
 
-I tried to make the save process as fast as possible. As a result, saving sessions should not take more than 60 seconds per player and 30 seconds for the Game&Map state _(e.g. 3,5 minutes for a 3-player game)_.
+I tried to make the save process as fast as possible. As a result, saving sessions should not take more than 60 seconds per player and 30 seconds for the Game&Map state _(ex. 3,5 minutes for a 3-player game)_.
 
 ## Features
 

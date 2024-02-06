@@ -13,7 +13,6 @@ import { politicalBoardConfig } from '../../../configs/expansions.config';
 import { Player } from '../../../interfaces/player.interface';
 import {
   Assembly,
-  PlayerDelegate,
   PoliticalAssembly,
 } from '../../../interfaces/module0.interface';
 import { MatInputModule } from '@angular/material/input';
@@ -42,37 +41,37 @@ export class Module0Component {
 
   freedomAssemblyFormGroup = new FormGroup({
     seniorityDiscs: new FormControl<number>(0),
-    delegates: new FormControl<PlayerDelegate[]>([]),
+    delegates: new FormControl<string>(''),
   });
 
   honorAssemblyFormGroup = new FormGroup({
     seniorityDiscs: new FormControl<number>(0),
-    delegates: new FormControl<PlayerDelegate[]>([]),
+    delegates: new FormControl<string>(''),
   });
 
   unityAssemblyFormGroup = new FormGroup({
     seniorityDiscs: new FormControl<number>(0),
-    delegates: new FormControl<PlayerDelegate[]>([]),
+    delegates: new FormControl<string>(''),
   });
 
   authorityAssemblyFormGroup = new FormGroup({
     seniorityDiscs: new FormControl<number>(0),
-    delegates: new FormControl<PlayerDelegate[]>([]),
+    delegates: new FormControl<string>(''),
   });
 
   equalityAssemblyFormGroup = new FormGroup({
     seniorityDiscs: new FormControl<number>(0),
-    delegates: new FormControl<PlayerDelegate[]>([]),
+    delegates: new FormControl<string>(''),
   });
 
   individualityAssemblyFormGroup = new FormGroup({
     seniorityDiscs: new FormControl<number>(0),
-    delegates: new FormControl<PlayerDelegate[]>([]),
+    delegates: new FormControl<string>(''),
   });
 
   centristAssemblyFormGroup = new FormGroup({
     seniorityDiscs: new FormControl<number>(0),
-    delegates: new FormControl<PlayerDelegate[]>([]),
+    delegates: new FormControl<string>(''),
   });
 
   formGroups = [
