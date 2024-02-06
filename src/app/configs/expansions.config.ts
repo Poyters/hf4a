@@ -25,27 +25,31 @@ export const politicalBoardConfig = {
   politicalAssemblies: [
     {
       name: 'Freedom',
-      color: '',
+      color: '#801E23',
     },
     {
       name: 'Honor',
-      color: '',
+      color: '#C1C5D8',
     },
     {
       name: 'Unity',
-      color: '',
+      color: '#C1A33A',
     },
     {
       name: 'Authority',
-      color: '',
+      color: '#A092BB',
     },
     {
       name: 'Equality',
-      color: '',
+      color: '#43BCBC',
     },
     {
       name: 'Individuality',
-      color: '',
+      color: '#7A838B',
+    },
+    {
+      name: 'Centrist',
+      color: '#FFFFFF',
     },
   ],
 };

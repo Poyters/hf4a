@@ -1,1 +1,17 @@
-<ng-container [formGroup]="expansionsFormGroup"> module 0 </ng-container>
+<!-- <ng-container [formGroup]="expansionsFormGroup"> -->
+
+<mat-accordion>
+  <mat-expansion-panel
+    *ngFor="let assembly of politicalAssemblies; let i = index"
+  >
+    <mat-expansion-panel-header>
+      <mat-panel-title> {{ assembly.name }} </mat-panel-title>
+      <mat-panel-description> fawfa </mat-panel-description>
+    </mat-expansion-panel-header>
+    <form [formGroup]="formGroups[i]">
+      <app-assembly></app-assembly>
+    </form>
+  </mat-expansion-panel>
+</mat-accordion>
+
+<!-- </ng-container> -->

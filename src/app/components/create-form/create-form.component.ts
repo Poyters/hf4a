@@ -32,6 +32,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { Router } from '@angular/router';
 import { ExpansionsComponent } from './expansions/expansions.component';
 import { Module0Component } from './module-0/module-0.component';
+import { PoliticalAssembly } from '../../interfaces/module0.interface';
 
 @Component({
   selector: 'app-create-form',
@@ -78,6 +79,7 @@ export class CreateFormComponent {
 
   expansionsFormGroup = new FormGroup({
     expansions: new FormControl<string[]>([]),
+    module0: new FormControl<PoliticalAssembly | null>(null),
   });
 
   playersFormGroup = new FormGroup({
