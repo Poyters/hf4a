@@ -8,7 +8,7 @@ I tried to make the save process as fast as possible. As a result, saving sessio
 
 - [x] Core game
 - [x] 6th player
-- [ ] Module 0
+- [x] Module 0
 - [ ] Module 1
 - [ ] Module 2
 - [ ] Module 3

@@ -20,3 +20,32 @@ export const expansionsConfig = [
   //     exclude: [],
   //   },
 ];
+
+export const politicalBoardConfig = {
+  politicalAssemblies: [
+    {
+      name: 'Freedom',
+      color: '',
+    },
+    {
+      name: 'Honor',
+      color: '',
+    },
+    {
+      name: 'Unity',
+      color: '',
+    },
+    {
+      name: 'Authority',
+      color: '',
+    },
+    {
+      name: 'Equality',
+      color: '',
+    },
+    {
+      name: 'Individuality',
+      color: '',
+    },
+  ],
+};
