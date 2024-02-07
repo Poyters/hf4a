@@ -16,7 +16,6 @@
       </mat-step>
       <mat-step *ngIf="saveSheet.expansions?.names?.includes('Module 0')">
         <ng-template matStepLabel>Politics</ng-template>
-        module 0
         <mat-chip-listbox>
           <mat-chip
             *ngFor="let assembly of saveSheet.expansions?.module0?.assemblies"
