@@ -22,7 +22,7 @@
       </mat-step>
 
       <mat-step [stepControl]="expansionsFormGroup">
-        <form [formGroup]="expansionsFormGroup">
+        <form [formGroup]="expansionsFormGroup" class="form-wrapper">
           <ng-template matStepLabel>Expansions</ng-template>
 
           <app-expansions></app-expansions>
@@ -39,6 +39,24 @@
           </div>
         </form>
       </mat-step>
+
+      <!-- <mat-step
+        *ngIf="
+          expansionsFormGroup.get('expansions')?.value?.includes('Module 0')
+        "
+      >
+        <form [formGroup]="expansionsFormGroup" class="form-wrapper">
+          <ng-template matStepLabel>Politics</ng-template>
+          <app-module-0></app-module-0>
+
+          <div class="buttons-wrapper">
+            <button mat-raised-button matStepperPrevious>Back</button>
+            <button mat-raised-button color="primary" matStepperNext>
+              Next
+            </button>
+          </div>
+        </form>
+      </mat-step> -->
 
       <mat-step [stepControl]="playersFormGroup">
         <form [formGroup]="playersFormGroup" class="form-wrapper">
@@ -89,7 +107,6 @@
         </form>
       </mat-step>
 
-      <!-- political -->
       <mat-step
         *ngIf="
           expansionsFormGroup.get('expansions')?.value?.includes('Module 0')
