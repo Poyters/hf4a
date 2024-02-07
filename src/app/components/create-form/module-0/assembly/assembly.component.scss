@@ -6,6 +6,11 @@
 
 .delegates-field {
   flex: 1;
+
+  @media (max-width: $smallScreenMax) {
+    flex: auto;
+    width: 120px;
+  }
 }
 
 .inputs-wrapper {

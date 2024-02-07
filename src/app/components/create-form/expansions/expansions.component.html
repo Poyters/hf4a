@@ -1,13 +1,24 @@
 <ng-container [formGroup]="expansionsFormGroup">
-  <mat-chip-listbox aria-label="Expansions selection" multiple>
+  <mat-chip-listbox aria-label="Fish selection">
     <mat-chip-option
       *ngFor="let expansion of expansions"
+      [disabled]="expansion.disabled"
       (click)="selectExpansion(expansion.name)"
+    >
+      {{ expansion.name }}
+    </mat-chip-option>
+  </mat-chip-listbox>
+
+  <!-- <mat-chip-listbox aria-label="Expansions selection" multiple>
+    <mat-chip-option
+      *ngFor="let expansion of expansions; let i = index"
+      (click)="selectExpansion(expansion.name)"
+      [disabled]="expansion.disabled"
       [selected]="
         expansionsFormGroup.get('expansions')?.value?.includes(expansion.name)
       "
     >
       {{ expansion.name }}
     </mat-chip-option>
-  </mat-chip-listbox>
+  </mat-chip-listbox> -->
 </ng-container>
