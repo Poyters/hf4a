@@ -47,6 +47,17 @@
           ></mat-progress-bar>
         </mat-expansion-panel-header>
         <div class="expanded-wrapper">
+          <ng-container *ngIf="saveSheet.expansions?.names?.length">
+            <mat-divider></mat-divider>
+            <h4>Expansions</h4>
+            <mat-chip-listbox>
+              <mat-chip
+                *ngFor="let expansionName of saveSheet.expansions?.names"
+              >
+                {{ expansionName }}
+              </mat-chip>
+            </mat-chip-listbox>
+          </ng-container>
           <mat-divider></mat-divider>
           <h4>Players</h4>
           <mat-chip-listbox>

@@ -1,0 +1,20 @@
+@import "../../../../styles/variables";
+
+.number-field {
+  width: 115px;
+}
+
+.delegates-field {
+  flex: 1;
+}
+
+.inputs-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 20px;
+
+  @media (max-width: $smallScreenMax) {
+    gap: 5px;
+  }
+}

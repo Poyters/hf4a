@@ -34,42 +34,51 @@ import { AssemblyComponent } from './assembly/assembly.component';
   styleUrl: './module-0.component.scss',
 })
 export class Module0Component {
-  @Input() playersData!: Player[];
-
   expansionsFormGroup!: FormGroup;
   politicalAssemblies = politicalBoardConfig.politicalAssemblies;
 
+  politicalAssembly: PoliticalAssembly = {
+    assemblies: [],
+  };
+
   freedomAssemblyFormGroup = new FormGroup({
+    name: new FormControl<string>(this.politicalAssemblies[0].name),
     seniorityDiscs: new FormControl<number>(0),
     delegates: new FormControl<string>(''),
   });
 
   honorAssemblyFormGroup = new FormGroup({
+    name: new FormControl<string>(this.politicalAssemblies[1].name),
     seniorityDiscs: new FormControl<number>(0),
     delegates: new FormControl<string>(''),
   });
 
   unityAssemblyFormGroup = new FormGroup({
+    name: new FormControl<string>(this.politicalAssemblies[2].name),
     seniorityDiscs: new FormControl<number>(0),
     delegates: new FormControl<string>(''),
   });
 
   authorityAssemblyFormGroup = new FormGroup({
+    name: new FormControl<string>(this.politicalAssemblies[3].name),
     seniorityDiscs: new FormControl<number>(0),
     delegates: new FormControl<string>(''),
   });
 
   equalityAssemblyFormGroup = new FormGroup({
+    name: new FormControl<string>(this.politicalAssemblies[4].name),
     seniorityDiscs: new FormControl<number>(0),
     delegates: new FormControl<string>(''),
   });
 
   individualityAssemblyFormGroup = new FormGroup({
+    name: new FormControl<string>(this.politicalAssemblies[5].name),
     seniorityDiscs: new FormControl<number>(0),
     delegates: new FormControl<string>(''),
   });
 
   centristAssemblyFormGroup = new FormGroup({
+    name: new FormControl<string>(this.politicalAssemblies[6].name),
     seniorityDiscs: new FormControl<number>(0),
     delegates: new FormControl<string>(''),
   });
@@ -88,5 +97,28 @@ export class Module0Component {
 
   ngOnInit(): void {
     this.expansionsFormGroup = this.rootFormGroup.control;
+
+    this.formGroups.forEach((formGroup) => {
+      formGroup.valueChanges.subscribe(() => {
+        this.updatePoliticalAssembly(formGroup.value as Assembly);
+      });
+    });
+  }
+
+  updatePoliticalAssembly(updatedAssembly: Assembly): void {
+    const existingAssemblyIndex = this.politicalAssembly.assemblies.findIndex(
+      (assembly) => assembly.name === updatedAssembly.name
+    );
+
+    if (existingAssemblyIndex !== -1) {
+      this.politicalAssembly.assemblies[existingAssemblyIndex] =
+        updatedAssembly;
+    } else {
+      this.politicalAssembly.assemblies.push(updatedAssembly);
+    }
+
+    // Możesz dodać dodatkowe logiki lub manipulacje tutaj
+    console.log('Updated Political Assembly:', this.politicalAssembly);
+    this.expansionsFormGroup.get('module0')?.setValue(this.politicalAssembly);
   }
 }

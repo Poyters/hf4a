@@ -14,6 +14,25 @@
           <button mat-raised-button color="primary" matStepperNext>Next</button>
         </div>
       </mat-step>
+      <mat-step *ngIf="saveSheet.expansions?.names?.includes('Module 0')">
+        <ng-template matStepLabel>Politics</ng-template>
+        module 0
+        <mat-chip-listbox>
+          <mat-chip
+            *ngFor="let assembly of saveSheet.expansions?.module0?.assemblies"
+          >
+            {{ assembly.name }} - seniority discs:
+            {{ assembly.seniorityDiscs }}
+            {{ assembly?.delegates?.length ? ", delegates:" : "" }}
+            {{ assembly.delegates }}
+          </mat-chip>
+        </mat-chip-listbox>
+
+        <div class="buttons-wrapper">
+          <button mat-raised-button matStepperPrevious>Back</button>
+          <button mat-raised-button color="primary" matStepperNext>Next</button>
+        </div>
+      </mat-step>
       <mat-step *ngIf="saveSheet.mapState.bustedDiscs.length">
         <ng-template matStepLabel>Busted discs</ng-template>
         <mat-chip-listbox>

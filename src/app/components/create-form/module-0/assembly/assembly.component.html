@@ -1,22 +1,24 @@
 <ng-container [formGroup]="assemblyFormGroup">
-  <mat-form-field class="number-field">
-    <mat-label>Seniority discs</mat-label>
-    <input
-      matInput
-      value="0"
-      type="number"
-      formControlName="seniorityDiscs"
-      min="0"
-    />
-  </mat-form-field>
-  <mat-form-field class="name-field">
-    <mat-label>Delegates</mat-label>
-    <input
-      matInput
-      formControlName="delegates"
-      placeholder="Ex. Johny 2, Kostek 1"
-    />
-  </mat-form-field>
+  <div class="inputs-wrapper">
+    <mat-form-field class="delegates-field">
+      <mat-label>Delegates</mat-label>
+      <input
+        matInput
+        formControlName="delegates"
+        placeholder="Ex. Johny 2, Kostek 1"
+      />
+    </mat-form-field>
+    <mat-form-field class="number-field">
+      <mat-label>Seniority discs</mat-label>
+      <input
+        matInput
+        value="0"
+        type="number"
+        formControlName="seniorityDiscs"
+        min="0"
+      />
+    </mat-form-field>
+  </div>
 
   <div>{{ assemblyFormGroup.value | json }}</div>
 </ng-container>

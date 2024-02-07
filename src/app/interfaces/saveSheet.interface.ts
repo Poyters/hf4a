@@ -1,4 +1,5 @@
 import { MapObject } from './map.interface';
+import { PoliticalAssembly } from './module0.interface';
 import { Player } from './player.interface';
 import { Scenario } from './scenarios.interface';
 
@@ -14,4 +15,10 @@ export interface SaveSheet {
     bridges: MapObject[];
     bustedDiscs: MapObject[];
   };
+  expansions?: Expansions;
+}
+
+export interface Expansions {
+  names: string[];
+  module0: PoliticalAssembly | null;
 }

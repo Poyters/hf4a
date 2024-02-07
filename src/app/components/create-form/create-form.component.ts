@@ -171,6 +171,10 @@ export class CreateFormComponent {
       yearPosition: this.scenarioFormGroup.get('yearPosition')?.value,
       mapState: { ...this.mapStateFormGroup.value },
       date: new Date(),
+      expansions: {
+        names: this.expansionsFormGroup.get('expansions')?.value ?? [],
+        module0: this.expansionsFormGroup.get('module0')?.value ?? null,
+      },
     };
 
     try {
